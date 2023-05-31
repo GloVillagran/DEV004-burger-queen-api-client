@@ -1,0 +1,100 @@
+.Waiter {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+  
+  
+  .content {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    flex-grow: 1;
+    margin-left: 10px;;
+  }
+  
+ 
+  .breakfast {
+    position: sticky;
+    top: 20px;
+    left: 10px;
+    margin-bottom: 10px;
+    width: 50%;
+  }
+
+  .breakfast.active {
+    background-color: red;
+    color: #fff;
+  }
+  .lunch {
+    position: sticky;
+    top: 20px;
+    left: 30px;
+    margin-bottom: 10px;
+    width: 50%;
+  }
+  .lunch.active {
+    background-color: red;
+    color: #fff;
+  }
+
+  .product {
+    width: calc(50% - 20px);
+    margin: 10px;
+    padding: 10px;
+    box-sizing: border-box;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .product img {
+    max-width: 50%;
+    height: auto;
+   
+  }
+  
+  .nameProduct {
+    font-weight: bold;
+    
+
+  }
+  
+  .price {
+    margin-top: 5px;
+  }
+  
+  /* Otros estilos para los productos, como fondo, borde, etc. */
+  .product {
+    background-color: black;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    color: white
+  }
+  
+  /* Estilos adicionales para el diseño responsivo */
+  @media (max-width: 768px) {
+    .Waiter {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .breakfast, .lunch {
+      position: static;
+      width: 30%;
+    }
+  
+    .product {
+      width: calc(100% - 20px);
+    }
+  }
+  
+  /* Estilos generales */
+  .Waiter {
+    max-width: 1000px;
+    margin: 0 auto;
+    
+  }
+  

@@ -1,0 +1,29 @@
+.menu-vertical {
+    width: 200px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    background-color:black;
+    padding: 10px;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  .cajaMenu {
+    background-color: black;
+  }
+  
+  li {
+    padding: 10px;
+    background: black;
+    color: white;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  li:hover {
+    background-color: #6D2B02;
+  }
+  
