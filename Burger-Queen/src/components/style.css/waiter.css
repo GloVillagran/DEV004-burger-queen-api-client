@@ -1,3 +1,4 @@
+
 .Waiter {
     display: flex;
     justify-content: flex-start;
@@ -10,10 +11,10 @@
     flex-wrap: wrap;
     align-items: flex-start;
     flex-grow: 1;
-    margin-left: 10px;;
+    margin-left: 10px;
+   
   }
   
- 
   .breakfast {
     position: sticky;
     top: 20px;
@@ -26,6 +27,7 @@
     background-color: red;
     color: #fff;
   }
+  
   .lunch {
     position: sticky;
     top: 20px;
@@ -39,7 +41,7 @@
   }
 
   .product {
-    width: calc(50% - 20px);
+    width: calc(60% - 20px);
     margin: 10px;
     padding: 10px;
     box-sizing: border-box;
@@ -58,13 +60,78 @@
   
   .nameProduct {
     font-weight: bold;
-    
-
+    font-size: x-small;
   }
   
   .price {
     margin-top: 5px;
   }
+  .addToCart {
+    font-size: x-small;
+  }
+
+/* caja de la carta */
+
+.Cart {
+  position: fixed;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  width: 30%; /* Ajusta el ancho deseado */
+  height: 65%; /* Ajusta la altura deseada */
+  padding: 20px;
+  background-color: #BB6748;
+  
+  overflow: auto;
+  border-radius: 10px;
+  }
+
+  .CartSummary {
+    color: white;
+    position: sticky;
+    top: 0;
+    left: 0;
+    padding-bottom: 10px;
+    font-weight: bold;
+  }
+
+  .cart-products {
+    margin-top: 10px;
+  }
+  
+  .cart-item {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: black;
+    border-radius: 10px;
+    height: 30%;
+  }
+  .name {
+    color: white
+  }
+  
+  .item-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .item-actions .button-group {
+    display: flex;
+  }
+  
+  .item-actions button {
+    padding: 5px;
+    font-size: 12px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+  }
+  
+  .item-actions button:last-child {
+    margin-right: 0;
+  }
+  
   
   /* Otros estilos para los productos, como fondo, borde, etc. */
   .product {
@@ -88,6 +155,12 @@
   
     .product {
       width: calc(100% - 20px);
+    }
+    .nameProduct{
+      font-size: x-small;
+    }
+    .addToCart {
+      font-size: small;
     }
   }
   

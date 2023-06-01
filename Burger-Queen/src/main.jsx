@@ -21,7 +21,6 @@ import App from "./App.jsx";
 import  Home  from './components/Home.jsx';
 import  Login  from './components/Login.jsx';
 import Waiter from './components/waiter/Waiter'
-import '../src/components/style.css/waiter.css'
 import './index.css'
 import { AuthProvider } from '../src/AuthContext'
 
