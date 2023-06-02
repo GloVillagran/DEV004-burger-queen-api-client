@@ -21,7 +21,7 @@ import App from "./App.jsx";
 import  Home  from './components/Home.jsx';
 import  Login  from './components/Login.jsx';
 import Waiter from './components/waiter/Waiter';
-import Chef from './components/chef/Orders';
+import OrdersChef from './components/chef/OrdersChef';
 import './index.css'
 import { AuthProvider } from '../src/AuthContext'
 
@@ -45,7 +45,7 @@ const router = createBrowserRouter([
   }, 
   {
     path: 'chef',
-    element: <Chef/>
+    element: <OrdersChef/>
   } 
 ]);
 

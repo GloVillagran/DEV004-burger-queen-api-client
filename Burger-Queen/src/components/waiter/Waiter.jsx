@@ -11,6 +11,7 @@ function Waiter() {
   const { token, user } = useContext(AuthContext); // Acceder al token de autenticación desde el contexto
   const [name, setName] = useState('');
   const [products, setProducts] = useState([]);
+  
   const [selectedMenu, setSelectedMenu] = useState(''); // Estado para controlar el menú seleccionado
   const [cart, setCart] = useState([]); //Mantiene la lista de productos seleccionados en el carrito
   const [order, setOrder] = useState([]) //almacena la orden
@@ -87,11 +88,12 @@ function Waiter() {
 
   async function handleSendOrder() {
     const newOrder = {
-      clientName: name,
-      items: cart,
+      userId: userId,
+      client: name,
+      products: cart,
+    
       total: calculateTotal(),
       date: new Date().toISOString(),
-      userId: userId,
       status: 'pending' 
     };
     setOrder(newOrder);
