@@ -20,7 +20,8 @@ import {
 import App from "./App.jsx";
 import  Home  from './components/Home.jsx';
 import  Login  from './components/Login.jsx';
-import Waiter from './components/waiter/Waiter'
+import Waiter from './components/waiter/Waiter';
+import Chef from './components/chef/Orders';
 import './index.css'
 import { AuthProvider } from '../src/AuthContext'
 
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
   {
     path: 'waiter',
     element: <Waiter/>
+  }, 
+  {
+    path: 'chef',
+    element: <Chef/>
   } 
 ]);
 

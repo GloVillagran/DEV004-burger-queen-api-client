@@ -8,12 +8,15 @@ import CartSummary from './CartSummary';
 
 
 function Waiter() {
+  const { token, user } = useContext(AuthContext); // Acceder al token de autenticación desde el contexto
   const [name, setName] = useState('');
   const [products, setProducts] = useState([]);
   const [selectedMenu, setSelectedMenu] = useState(''); // Estado para controlar el menú seleccionado
-  const { token } = useContext(AuthContext); // Acceder al token de autenticación desde el contexto
   const [cart, setCart] = useState([]); //Mantiene la lista de productos seleccionados en el carrito
   const [order, setOrder] = useState([]) //almacena la orden
+  const [userId, setUserId] = useState(''); // Estado para almacenar el ID del waiter
+  const [pendingOrders, setPendingOrders] = useState([]); //almacena la lista de pedidos pendientes
+
 
   useEffect(() => {
     /* fetchProducts, esta función realiza la solicitud GET a la API utilizando Axios 
@@ -35,7 +38,10 @@ function Waiter() {
     if (token) {
       fetchProducts();
     }
-  }, [token]);
+    if (user && user.id) {
+      setUserId(user.id);
+    }
+  }, [token, user]);
 
   function handleClick(e, menu) {
     e.preventDefault();
@@ -83,7 +89,10 @@ function Waiter() {
     const newOrder = {
       clientName: name,
       items: cart,
-      total: calculateTotal()
+      total: calculateTotal(),
+      date: new Date().toISOString(),
+      userId: userId,
+      status: 'pending' 
     };
     setOrder(newOrder);
 
@@ -94,7 +103,10 @@ function Waiter() {
         }
       });
       console.log(response.data); // Verifica la respuesta del servidor en la consola
-      // Aquí puedes realizar las acciones necesarias después de enviar la orden, como mostrar una notificación de éxito o redirigir al usuario a otra página.
+
+      // Agregar el nuevo pedido a la lista de pedidos pendientes
+  setPendingOrders([...pendingOrders, response.data]);
+
     } catch (error) {
       console.error(error);
       // Maneja el error, por ejemplo, mostrando una notificación de error al usuario.
@@ -183,6 +195,7 @@ function Waiter() {
         sendOrder={handleSendOrder}
         backToMenu={handleBackToMenu}
       />
+     
     </div>
   );
 }
