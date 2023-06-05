@@ -90,10 +90,9 @@ function Waiter() {
     const newOrder = {
       userId: userId,
       client: name,
-      products: cart,
-    
+      product: cart,
       total: calculateTotal(),
-      date: new Date().toISOString(),
+      dateEntry: new Date().toISOString(),
       status: 'pending' 
     };
     setOrder(newOrder);

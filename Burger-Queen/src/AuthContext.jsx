@@ -1,12 +1,9 @@
 import { createContext, useState } from 'react';
 
-
-
 //Almacenamiento del token de autenticación
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
-  console.log(children)
   const [token, setToken] = useState(null);
   const [user, setUser] = useState(null);
 
@@ -20,7 +17,6 @@ const AuthProvider = ({ children }) => {
   const logout = () => {
     setToken(null);
   };
-
 
   return (
     <AuthContext.Provider value={{ token, login, logout, user }}>

@@ -1,17 +1,15 @@
-import { useState, useContext, useEffect } from 'react'
 import logo from '../assets/img/2.png'
-import axios from 'axios';
+import { useState, useContext, useEffect } from 'react';
 import { AuthContext } from '../AuthContext';
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import axios from 'axios';
+import { Link, useNavigate } from "react-router-dom";
 
-function Login() {
-  const navigate = useNavigate();
+const Login =  () => {
+    const navigate = useNavigate();
   const { login, user } = useContext(AuthContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-
 
   //redirecciono cuando cambia el estado del usuario
   useEffect(() => {
@@ -31,17 +29,29 @@ function Login() {
     } 
    })
 
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const response = await axios.post(' http://localhost:8080/login', {
-        email,
-        password,
-      });
-       login(response.data);
+    // Aquí puedes agregar la lógica para enviar los datos del formulario a un servidor
+    console.log('Email:', email);
+    console.log('Password:', password);
 
-    } catch (error) {
-      //console.error(error.response.data.message);
+    try {
+        const response = await axios.post(' http://localhost:8080/login', {
+            email,
+            password,
+          });
+
+          login(response.data);
+    } catch(error) {
+         //console.error(error.response.data.message);
       console.log(error)
       if (error.response && error.response.data) {
         setErrorMessage(error.response.data); //trae los errores que ya vienen en la data
@@ -50,35 +60,26 @@ function Login() {
         setErrorMessage('Error login');
       }
     }
+    
   };
+
   return (
     <div>
       <img src={logo} className='logoLogin' /> <br />
-      <h1>Log In</h1>
-       <p>{errorMessage}</p>
+      <h2>Welcome</h2>
+      <p>{errorMessage}</p>
       <form onSubmit={handleSubmit}>
         <div>
-          <input
-            type="email" id='email' placeholder='Email'
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
+          <input id="email" type="email" value={email} onChange={handleEmailChange} placeholder="Email" />
         </div>
         <div>
-          <input
-            type="password" id='password' placeholder='Password'
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          /> <br />
-        </div>
-        <button type="submit" className='login'>Log In</button>
+          <input id="password" type="password" value={password} onChange={handlePasswordChange} placeholder="Password" />
+        </div> <br />
+        <button type="submit">Login</button>
         <Link to="/">Back to home</Link>
       </form>
     </div>
   );
-}
+};
 
-export default Login
-       
-
-
+export default Login;
