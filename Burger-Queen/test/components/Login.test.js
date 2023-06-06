@@ -34,12 +34,16 @@ test('successfull login', async () => {
   expect(emailInput).toBeDefined();
   expect(passwordInput).toBeDefined();
 
+  // fireEvent: Disparar eventos DOM.
+  // https://testing-library.com/docs/dom-testing-library/api-events/
   fireEvent.change(emailInput, { target: { value: 'gloria@gmail.com' } });
   fireEvent.change(passwordInput, { target: { value: '123456' } });
+  // getByText accederá a elementos basados en el texto visible para el usuario.
   fireEvent.click(screen.getByText('Login'));
 
   await waitFor(() => {
     // Código para interactuar y verificar los datos asincrónicos
+    // asegurarse de que se llamó a una función simulada con argumentos específicos
     expect(login).toHaveBeenCalledWith(expectedData.data)
   });
 });

@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { AuthContext } from '../../AuthContext';
 import MenuVertical from '../MenuVertical';
-import '../style.css/waiter.css'
+import '../style.css/waiter.css';
 import CartSummary from './CartSummary';
 
 
@@ -37,6 +37,7 @@ function Waiter() {
       }
     };
     if (token) {
+       
       fetchProducts();
     }
     if (user && user.id) {
@@ -45,20 +46,29 @@ function Waiter() {
   }, [token, user]);
 
   function handleClick(e, menu) {
+    //Cancela el evento si este es cancelable, sin detener el resto del funcionamiento del evento.
     e.preventDefault();
     setSelectedMenu(menu);
   }
 
   //funcion que agrega productos al carrito
   function handleAddToCart(product) {
+    // se busca en el carrito (cart) si ya existe un producto con el mismo id que el producto que queremos agregar. 
     const existingProduct = cart.find((p) => p.id === product.id);
 
+    // verifica existingProduct tiene un valor o es undefined. 
     if (existingProduct) {
+      
+      /* se utiliza el método map en el array cart para crear un nuevo array updatedCart que será una copia del carrito original, 
+      pero con la cantidad actualizada del producto que ya estaba en el carrito.  */
       const updatedCart = cart.map((p) =>
+      /* Si son iguales, creamos un nuevo objeto con los mismos atributos (...p) pero incrementamos la cantidad en 1 */
         p.id === product.id ? { ...p, quantity: p.quantity + 1 } : p
       );
-      setCart(updatedCart);
-    } else {
+      setCart(updatedCart); // actualizamos el estado del carrito utilizando la función setCart y le pasamos el nuevo array updatedCart
+    
+    } else { /*setCart para actualizar el estado del carrito. Creamos un nuevo array utilizando [...cart] 
+      para copiar los productos existentes en el carrito y luego agregamos el nuevo producto */
       setCart([...cart, { ...product, quantity: 1 }]);
     }
   }
@@ -68,6 +78,7 @@ function Waiter() {
     setCart(updatedCart);
   }
 
+  // aumentar la cantidad de un producto
   function increaseQuantity(product) {
     const updatedCart = cart.map((p) =>
       p.id === product.id ? { ...p, quantity: p.quantity + 1 } : p
@@ -75,13 +86,17 @@ function Waiter() {
     setCart(updatedCart);
   }
 
+  // disminuir la cantidad de un producto 
   function decreaseQuantity(product) {
     const updatedCart = cart.map((p) =>
       p.id === product.id ? { ...p, quantity: p.quantity - 1 } : p
     );
+   /*  Luego, utilizamos para filtrar el array updatedCart y eliminar cualquier producto que tenga 
+    una cantidad menor o igual a cero.  */
     setCart(updatedCart.filter((p) => p.quantity > 0));
   }
 
+  // el método reduce en el array cart para sumar el precio de cada producto multiplicado por su cantidad. 0 valor inicial
   function calculateTotal() {
     return cart.reduce((total, product) => total + product.price * product.quantity, 0);
   }
@@ -121,7 +136,7 @@ function Waiter() {
 
   return (
     <div className="Waiter">
-      <MenuVertical />
+      <MenuVertical /> 
       <div className="content">
         <button
           onClick={(e) => handleClick(e, 'Desayuno')}
@@ -138,7 +153,7 @@ function Waiter() {
         </button>
 
         <input
-          type="email"
+          type="text"
           id="name"
           placeholder="Client name"
           value={name}

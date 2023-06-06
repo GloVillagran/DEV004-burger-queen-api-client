@@ -4,19 +4,20 @@ import { AuthContext } from '../AuthContext';
 import axios from 'axios';
 import { Link, useNavigate } from "react-router-dom";
 
-const Login =  () => {
-    const navigate = useNavigate();
+const Login = () => {
+  const navigate = useNavigate();
   const { login, user } = useContext(AuthContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
   //redirecciono cuando cambia el estado del usuario
+  // permite sincronizar un componente con un sistema externo.
   useEffect(() => {
-    if(user && user.role) {
+    if (user && user.role) {
       const role = user.role
       console.log(role)
-  
+
       switch (role) {
         case 'admin': navigate('/admin')
           break;
@@ -24,10 +25,10 @@ const Login =  () => {
           break;
         case 'chef': navigate('/chef')
           break;
-        default: null  
+        default: null
       }
-    } 
-   })
+    }
+  })
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -44,14 +45,14 @@ const Login =  () => {
     console.log('Password:', password);
 
     try {
-        const response = await axios.post(' http://localhost:8080/login', {
-            email,
-            password,
-          });
-
-          login(response.data);
-    } catch(error) {
-         //console.error(error.response.data.message);
+      const response = await axios.post(' http://localhost:8080/login', {
+        email,
+        password,
+      });
+    
+      login(response.data);
+    } catch (error) {
+      //console.error(error.response.data.message);
       console.log(error)
       if (error.response && error.response.data) {
         setErrorMessage(error.response.data); //trae los errores que ya vienen en la data
@@ -60,7 +61,7 @@ const Login =  () => {
         setErrorMessage('Error login');
       }
     }
-    
+
   };
 
   return (

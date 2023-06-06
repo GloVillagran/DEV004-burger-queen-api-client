@@ -31,7 +31,7 @@ function OrdersChef() {
     }
   };
 
-  // realiza la solicitud a la API y actualizar el estado con los pedidos entregados. 
+  // realiza la solicitud a la API y actualiza el estado con los pedidos entregados. 
   const fetchDeliveredOrders = async () => {
     try {
       const response = await axios.get('http://localhost:8080/orders?status=delivered', {
