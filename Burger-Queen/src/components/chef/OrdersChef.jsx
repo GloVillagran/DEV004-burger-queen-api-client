@@ -23,6 +23,9 @@ function OrdersChef() {
 
       if (response && response.data) {
         setPendingOrders(response.data);
+        console.log(response.data)
+
+
       } else {
         setPendingOrders([]);
       }
@@ -54,7 +57,7 @@ function OrdersChef() {
   useEffect(() => {
     fetchPendingOrders();
     fetchDeliveredOrders();
-  }, []);
+  }, [token]);
 
   // realiza la solicitud PATCH para actualizar el campo dateProcessed al enviar un pedido.
   const sendOrder = async (orderId) => {
@@ -129,22 +132,22 @@ function OrdersChef() {
                 <span className="order-label">Order ID:</span> {order.id}
               </div>
               <div>
-                <span className="order-label">Cliente:</span> {order.client}
+                <span className="order-label">Client:</span> {order.client}
               </div>
               <div>
                 <span className="order-label">Date Entry:</span> {order.dateEntry}
               </div>
               <div>
                 <span className="order-label">Products:</span>
-               {/*  <ul>
-                  {order.products.map((product) => (
-                    <li key={product.id}>
-                      {product.name} (Quantity: {product.quantity})
+                <ul>
+                  {order.products.map((item, index) => (
+                    <li key={index}>
+                      {item.product.name} ({item.qty})
                     </li>
                   ))}
-                </ul> */}
+                </ul>
               </div>
-              
+
               <button className="buttonSend" onClick={() => handleSendOrder(order.id)}>
                 Send
               </button>
@@ -155,35 +158,43 @@ function OrdersChef() {
           ))}
         </ul>
       )}
+    
+    {displayedSection === 'delivered' && (
+  <ul>
+    {deliveredOrders.map((order) => {
+      // Formatear la fecha y hora
+      const formattedDateTime = new Date(order.dateProcessed).toLocaleString();
 
-      {displayedSection === 'delivered' && (
-        <ul>
-          {deliveredOrders.map((order) => (
-            <li className="pedidos" key={order.id}>
-              <div>
-                <span className="order-label">Order ID:</span> {order.id}
-              </div>
-              <div>
-                <span className="order-label">Cliente:</span> {order.client}
-              </div>
-              <div>
-                <span className="order-label">Date/Time Ready:</span> {order.dateProccesed}
-              </div>
-              <div>
-                <span className="order-label">Products:</span>
-               {/*  <ul>
-                  {order.products.map((product) => (
-                    <li key={product.id}>
-                      {product.name} (Quantity: {product.quantity})
-                    </li>
-                  ))}
-                </ul> */}
-              </div>
-             
-            </li>
-          ))}
-        </ul>
-      )}
+      return (
+        <li className="pedidos" key={order.id}>
+          <div>
+            <span className="order-label">Order ID:</span> {order.id}
+          </div>
+          <div>
+            <span className="order-label">Client:</span> {order.client}
+          </div>
+          <div>
+            <span className="order-label">Date/Time Ready:</span> {formattedDateTime}
+          </div>
+          <div>
+            <span className="order-label">Products:</span>
+            {order.products && order.products.length > 0 ? (
+              <ul>
+                {order.products.map((item, index) => (
+                  <li key={index}>
+                    {item.product.name} ({item.qty})
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p>No products found.</p>
+            )}
+          </div>
+        </li>
+      );
+    })}
+  </ul>
+)}
     </div>
   );
 }

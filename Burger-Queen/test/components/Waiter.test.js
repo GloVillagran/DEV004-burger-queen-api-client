@@ -14,7 +14,6 @@ jest.mock('../../src/components/style.css/MenuVertical.css', () => ({
 
 jest.mock('axios'); // Mockear el módulo axios para simular las peticiones
 
-jest.mock('axios');
 
 describe('Waiter component', () => {
   test('renders Waiter component', async () => {

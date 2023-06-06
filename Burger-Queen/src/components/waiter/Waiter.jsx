@@ -102,13 +102,35 @@ function Waiter() {
   }
 
   async function handleSendOrder() {
+    const currentDate = new Date();
+    const formattedDate = currentDate.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit'
+    });
+    const formattedTime = currentDate.toLocaleTimeString('en-US', {
+      hour12: false,
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit'
+    });
     const newOrder = {
       userId: userId,
       client: name,
-      product: cart,
-      total: calculateTotal(),
-      dateEntry: new Date().toISOString(),
-      status: 'pending' 
+      products: cart.map((product) => ({
+        qty: product.quantity,
+        product: {
+          id: product.id,
+          name: product.name,
+          price: product.price,
+          image: product.image,
+          type: product.type,
+          dateEntry: `${formattedDate} ${formattedTime}` 
+        }
+      })),
+      total: calculateTotal(), // Agregar el total utilizando la función calculateTotal
+      status: 'pending',
+      dateEntry: `${formattedDate} ${formattedTime}`
     };
     setOrder(newOrder);
 

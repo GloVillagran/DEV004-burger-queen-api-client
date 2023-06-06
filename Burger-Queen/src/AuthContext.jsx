@@ -25,11 +25,12 @@ const AuthProvider = ({ children }) => {
 
   const logout = () => {
     setToken(null);
+    setUser(null);
     localStorage.removeItem('token'); // Eliminar el token del local storage al hacer logout
   };
 
   return (
-    <AuthContext.Provider value={{ token, login, logout, user }}>
+    <AuthContext.Provider value={{ token, login, logout, user, setToken, setUser }}>
       {children}
       
     </AuthContext.Provider>
