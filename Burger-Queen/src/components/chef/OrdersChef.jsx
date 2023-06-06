@@ -1,6 +1,6 @@
 import { useState, useContext, useEffect } from 'react';
 import axios from 'axios';
-import MenuVertical from '../MenuVertical';
+import MenuVerticalWaiter from '../waiter/MenuVerticalWaiter';
 import { AuthContext } from '../../AuthContext';
 import '../style.css/chef.css';
 
@@ -114,7 +114,7 @@ function OrdersChef() {
 
   return (
     <div className="Chef">
-      <MenuVertical />
+      <MenuVerticalWaiter />
       <section>
         <button className="pending" onClick={() => setDisplayedSection('pending')}>
           Pending Order
@@ -163,6 +163,7 @@ function OrdersChef() {
   <ul>
     {deliveredOrders.map((order) => {
       // Formatear la fecha y hora
+      const formattedDateEntry = new Date(order.dateEntry).toLocaleString();
       const formattedDateTime = new Date(order.dateProcessed).toLocaleString();
 
       return (
@@ -173,6 +174,9 @@ function OrdersChef() {
           <div>
             <span className="order-label">Client:</span> {order.client}
           </div>
+          <div>
+                <span className="order-label">Date Entry:</span> {formattedDateEntry}
+              </div>
           <div>
             <span className="order-label">Date/Time Ready:</span> {formattedDateTime}
           </div>

@@ -1,7 +1,8 @@
 import { useContext } from 'react';
-import './style.css/MenuVertical.css';
-import { AuthContext } from '../AuthContext';
-import { useNavigate } from 'react-router-dom'
+import '../style.css/MenuVerticalWaiter.css';
+import { AuthContext } from '../../AuthContext';
+import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const MenuVertical = () => {
   const navigate = useNavigate();
@@ -21,8 +22,8 @@ const MenuVertical = () => {
   return (
     <div className="menu-vertical">
       <ul className='cajaMenu'>
-        <li>Home</li>
-        <li>Orders</li>
+      <li><Link to="/">Home</Link></li> {/* Utiliza Link para redirigir a la página de inicio */}
+        <li><Link to="/orders">Orders</Link></li> {/* Utiliza Link para redirigir a la página de Orders */}
         <li onClick={handleLogout}>Sign Out</li> {/* Agregar el onClick para llamar a la función handleLogout */}
       </ul>
     </div>

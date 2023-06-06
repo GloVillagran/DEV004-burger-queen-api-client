@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { AuthContext } from '../../AuthContext';
-import MenuVertical from '../MenuVertical';
+import MenuVerticalWaiter from './MenuVerticalWaiter';
 import '../style.css/waiter.css';
 import CartSummary from './CartSummary';
 
@@ -158,7 +158,7 @@ function Waiter() {
 
   return (
     <div className="Waiter">
-      <MenuVertical /> 
+      <MenuVerticalWaiter /> 
       <div className="content">
         <button
           onClick={(e) => handleClick(e, 'Desayuno')}
