@@ -1,58 +1,48 @@
+.DeliveredOrders {
+    width: 100%;
+    position: relative;;
+}
 .pending {
     width: 50%;
 }
   
-.delivered {
-    width: 50%;
-}
-
-.productsPending {
-  background-color: #6D2B02 ;
-  border-radius: 10px;
-  margin-block-start: 5%;
-}
-
-.productsReady {
-  margin-block-start: 5%;
-}
 
 /* Estilos para la lista de pedidos */
 ul {
     list-style-type: none;
     padding: 0;
-    background-color: #BB6748;
   }
   
   /* Estilos para cada caja de pedido */
   .pedidos {
+   
     border-radius: 10px;
     padding: 10px;
     margin-bottom: 10px;
     background-color: #BB6748;
   }
-  .products { 
-    background-color: #6D2B02 ;
+
+  .client {
+    
+    width: 100%;
     border-radius: 10px;
   }
+  
+  .products {
+    border-radius: 10px;
+    background-color: #220C04;
+    
+
+  }
   /* Estilos para el botón Send */
- .buttonSend {
+ .Delivered {
     background-color: #4caf50;
     color: white;
     border: none;
     padding: 5px 10px;
     margin-right: 5px;
     cursor: pointer;
-    width: 35%;
+    width: 50%;
   }
   
-  /* Estilos para el botón Cancel */
-  .buttonCancel {
-    background-color: #f44336;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-    width: 35%;
-  }
-  
-  
+ 

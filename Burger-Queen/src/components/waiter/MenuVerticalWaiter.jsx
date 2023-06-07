@@ -24,7 +24,7 @@ const MenuVertical = () => {
       <ul className='cajaMenu'>
       <li><Link to="/">Home</Link></li> {/* Utiliza Link para redirigir a la página de inicio */}
         <li><Link to="/orders">Orders</Link></li> {/* Utiliza Link para redirigir a la página de Orders */}
-        <li onClick={handleLogout}>Sign Out</li> {/* Agregar el onClick para llamar a la función handleLogout */}
+        <li onClick={handleLogout}>LogOut</li> {/* Agregar el onClick para llamar a la función handleLogout */}
       </ul>
     </div>
   );

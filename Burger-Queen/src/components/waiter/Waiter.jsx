@@ -172,7 +172,7 @@ function Waiter() {
           className={`lunch ${selectedMenu === 'Almuerzo' ? 'active' : ''}`}
         >
           Lunch
-        </button>
+        </button> 
 
         <input
           type="text"
@@ -181,7 +181,7 @@ function Waiter() {
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
-        <h3 className="options">Options</h3>
+        {/* <h3 className="options">Options</h3> */}
 
         {selectedMenu === 'Desayuno' && (
           <>

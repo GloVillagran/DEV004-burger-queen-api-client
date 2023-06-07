@@ -1,11 +1,11 @@
 import { useState, useContext, useEffect } from 'react';
 import axios from 'axios';
-import MenuVerticalWaiter from '../waiter/MenuVerticalWaiter';
+import MenuVerticalChef from './MenuVerticalChef';
 import { AuthContext } from '../../AuthContext';
 import '../style.css/chef.css';
 
 function OrdersChef() {
-  const { token } = useContext(AuthContext);
+  const { token,   } = useContext(AuthContext);
   const [pendingOrders, setPendingOrders] = useState([]);
   const [deliveredOrders, setDeliveredOrders] = useState([]);
 
@@ -57,6 +57,7 @@ function OrdersChef() {
   useEffect(() => {
     fetchPendingOrders();
     fetchDeliveredOrders();
+    
   }, [token]);
 
   // realiza la solicitud PATCH para actualizar el campo dateProcessed al enviar un pedido.
@@ -114,13 +115,13 @@ function OrdersChef() {
 
   return (
     <div className="Chef">
-      <MenuVerticalWaiter />
+      <MenuVerticalChef />
       <section>
         <button className="pending" onClick={() => setDisplayedSection('pending')}>
           Pending Order
         </button>
         <button className="delivered" onClick={handleOrderDelivered}>
-          Order delivered
+          Order Delivering
         </button>
       </section>
 
@@ -136,24 +137,23 @@ function OrdersChef() {
               </div>
               <div>
                 <span className="order-label">Date Entry:</span> {order.dateEntry}
-              </div>
+              </div> 
               <div>
-                <span className="order-label">Products:</span>
+                
                 <ul>
                   {order.products.map((item, index) => (
-                    <li key={index}>
+                    <li className='productsPending' key={index}>
                       {item.product.name} ({item.qty})
                     </li>
                   ))}
                 </ul>
-              </div>
-
+              </div> <br />
               <button className="buttonSend" onClick={() => handleSendOrder(order.id)}>
                 Send
               </button>
               <button className="buttonCancel" onClick={() => handleCancelOrder(order.id)}>
                 Cancel
-              </button>
+              </button> 
             </li>
           ))}
         </ul>
@@ -181,11 +181,11 @@ function OrdersChef() {
             <span className="order-label">Date/Time Ready:</span> {formattedDateTime}
           </div>
           <div>
-            <span className="order-label">Products:</span>
+           
             {order.products && order.products.length > 0 ? (
-              <ul>
+              <ul className='products'>
                 {order.products.map((item, index) => (
-                  <li key={index}>
+                  <li className='productReady' key={index}>
                     {item.product.name} ({item.qty})
                   </li>
                 ))}

@@ -108,7 +108,8 @@
     height: 30%;
   }
   .name {
-    color: white
+    color: white;
+    margin-block-start: 5%;
   }
   
   .item-actions {

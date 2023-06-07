@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom'
 
 
 function Home() {
-    return <div>
-      <img src={logo} /> <br />
+    return <div className='containerHome'>
+      <img className='logoHome' src={logo} /> <br />
 
       <Link to="/login">
         <button>Admin</button>

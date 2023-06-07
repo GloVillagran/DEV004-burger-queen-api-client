@@ -5,10 +5,16 @@ import axios from 'axios';
 import CartSummary from '../../src/components/waiter/CartSummary';
 
 
+// Mock de useNavigate
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
+  useNavigate: jest.fn(),
+}));
+
 jest.mock('../../src/components/style.css/Waiter.css', () => ({
 
 }));
-jest.mock('../../src/components/style.css/MenuVertical.css', () => ({
+jest.mock('../../src/components/style.css/MenuVerticalWaiter.css', () => ({
 
 }));
 
