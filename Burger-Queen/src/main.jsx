@@ -12,7 +12,8 @@ import OrdersChef from './components/chef/OrdersChef';
 import AdminHome from "./components/admin/admin.jsx";
 import './index.css'
 import { AuthProvider } from '../src/AuthContext'
-import Workers from "./components/admin/workers.jsx";
+import WorkersList from "./components/admin/WorkersList";
+import WorkersAdd from './components/admin/WorkersAdd'
 
 
 const router = createBrowserRouter([
@@ -45,8 +46,12 @@ const router = createBrowserRouter([
     element: <AdminHome/>
   },
   {
-    path: 'workers',
-    element: <Workers/>
+    path: 'workersList',
+    element: <WorkersList/>
+  },
+  {
+    path: 'workersAdd',
+    element: <WorkersAdd/>
   } 
 ]);
 
