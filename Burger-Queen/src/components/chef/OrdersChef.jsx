@@ -5,7 +5,7 @@ import { AuthContext } from '../../AuthContext';
 import '../style.css/chef.css';
 
 function OrdersChef() {
-  const { token,   } = useContext(AuthContext);
+  const { token } = useContext(AuthContext);
   const [pendingOrders, setPendingOrders] = useState([]);
   const [deliveredOrders, setDeliveredOrders] = useState([]);
 
@@ -15,12 +15,14 @@ function OrdersChef() {
   // Función para obtener los pedidos pendientes
   const fetchPendingOrders = async () => {
     try {
+     
       const response = await axios.get('http://localhost:8080/orders?status=pending', {
         headers: {
           Authorization: `Bearer ${token}`
         }
+        
       });
-
+     
       if (response && response.data) {
         setPendingOrders(response.data);
         console.log(response.data)
@@ -117,10 +119,10 @@ function OrdersChef() {
     <div className="Chef">
       <MenuVerticalChef />
       <section>
-        <button className="pending" onClick={() => setDisplayedSection('pending')}>
+        <button className="pending" data-testid="pending-order" onClick={() => setDisplayedSection('pending')}>
           Pending Order
         </button>
-        <button className="delivered" onClick={handleOrderDelivered}>
+        <button className="delivered" data-testid="delivering" onClick={handleOrderDelivered}>
           Order Delivering
         </button>
       </section>
@@ -148,7 +150,7 @@ function OrdersChef() {
                   ))}
                 </ul>
               </div> <br />
-              <button className="buttonSend" onClick={() => handleSendOrder(order.id)}>
+              <button className="buttonSend"  data-testid="send" onClick={() => handleSendOrder(order.id)}>
                 Send
               </button>
               <button className="buttonCancel" onClick={() => handleCancelOrder(order.id)}>

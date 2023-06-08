@@ -11,6 +11,7 @@ jest.mock('react-router-dom', () => ({
   useNavigate: jest.fn(),
 }));
 
+
 jest.mock('../../src/components/style.css/Waiter.css', () => ({
 
 }));
@@ -24,17 +25,16 @@ jest.mock('axios'); // Mockear el módulo axios para simular las peticiones
 describe('Waiter component', () => {
   test('renders Waiter component', async () => {
     const waiter = jest.fn();
-    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imdsb3JpYUBnbWFpbC5jb20iLCJpYXQiOjE2ODYwMTc5MDgsImV4cCI6MTY4NjAyMTUwOCwic3ViIjoiMyJ9.36LuwIClqChPtpjxH7wI-ogV86IBANT4JKHhghb23Gk';
-    const user = {
-      email: 'gloria@gmail.com',
-      id: 3,
-      role: 'waiter'
-    };
-
-    axios.get.mockResolvedValue({ data: [] }); // Mockear la respuesta de la petición GET
+    const expectedData = {
+      data: {
+          accessToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imdsb3JpYUBnbWFpbC5jb20iLCJpYXQiOjE2ODYwMTc5MDgsImV4cCI6MTY4NjAyMTUwOCwic3ViIjoiMyJ9.36LuwIClqChPtpjxH7wI-ogV86IBANT4JKHhghb23Gk',
+          user: { email: 'gloria@gmail.com', role: 'waiter', id: 3 }
+      }
+  }
+  axios.post.mockResolvedValue(expectedData);
 
     render(
-      <AuthContext.Provider value={{ token, user, waiter }}>
+      <AuthContext.Provider value={{ waiter }}>
         <Waiter />
       </AuthContext.Provider>
     );
