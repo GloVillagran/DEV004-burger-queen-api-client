@@ -9,8 +9,10 @@ import  Login  from './components/Login.jsx';
 import Waiter from './components/waiter/Waiter';
 import OrdersList from './components/waiter/OrdersList';
 import OrdersChef from './components/chef/OrdersChef';
+import AdminHome from "./components/admin/admin.jsx";
 import './index.css'
 import { AuthProvider } from '../src/AuthContext'
+import Workers from "./components/admin/workers.jsx";
 
 
 const router = createBrowserRouter([
@@ -37,6 +39,14 @@ const router = createBrowserRouter([
   {
     path: 'chef',
     element: <OrdersChef/>
+  }, 
+  {
+    path: 'admin',
+    element: <AdminHome/>
+  },
+  {
+    path: 'workers',
+    element: <Workers/>
   } 
 ]);
 
