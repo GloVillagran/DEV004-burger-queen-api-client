@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import '../style.css/MenuVerticalWaiter.css';
 import { AuthContext } from '../../AuthContext';
 import { useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 const MenuVertical = () => {
   const navigate = useNavigate();

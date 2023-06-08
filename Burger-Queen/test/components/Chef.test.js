@@ -1,5 +1,6 @@
 
 import { render, waitFor, screen } from '@testing-library/react';
+
 import axios from 'axios';
 import { AuthContext } from '../../src/AuthContext'
 import OrdersChef from '../../src/components/chef/OrdersChef';
@@ -135,9 +136,9 @@ describe('Send', () => {
 
         // Verifica que los pedidos pendientes y entregados se hayan actualizado correctamente
         const pendingOrderButton = screen.queryByTestId('pending-order');
-        expect(pendingOrderButton).not.toBeNull();
-        const deliveringButton = screen.queryByTestId('delivering');
-        expect(deliveringButton).not.toBeNull();
+expect(pendingOrderButton).not.toBeNull();
+const deliveringButton = screen.queryByTestId('delivering');
+expect(deliveringButton).not.toBeNull();
 
 
         // Restaura la implementación original de axios.patch

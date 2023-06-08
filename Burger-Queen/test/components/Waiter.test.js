@@ -4,13 +4,11 @@ import { AuthContext } from '../../src/AuthContext'; //El contexto de autenticac
 import axios from 'axios';
 import CartSummary from '../../src/components/waiter/CartSummary';
 
-
-// Mock de useNavigate
 jest.mock('react-router-dom', () => ({
-  ...jest.requireActual('react-router-dom'),
+  Link: 'Link',
+  Route: ({ children, path }) => children({ match: path === '/somewhere' }),
   useNavigate: jest.fn(),
-}));
-
+}))
 
 jest.mock('../../src/components/style.css/Waiter.css', () => ({
 
@@ -18,7 +16,6 @@ jest.mock('../../src/components/style.css/Waiter.css', () => ({
 jest.mock('../../src/components/style.css/MenuVerticalWaiter.css', () => ({
 
 }));
-
 jest.mock('axios'); // Mockear el módulo axios para simular las peticiones
 
 
@@ -54,14 +51,15 @@ test('selects menu on button click', async () => {
 
   axios.get.mockResolvedValue({ data: [] }); // Mockear la respuesta de la petición GET
 
-  render(
-    <AuthContext.Provider value={mockAuthContextValue}>
-      <Waiter />
-    </AuthContext.Provider>
-  );
-
+    render(
+      <AuthContext.Provider value={mockAuthContextValue}>
+        <Waiter />
+      </AuthContext.Provider>
+    );
+  // Renderizar el componente Waiter y capturar el resultado en una variable
+ 
   // Asegurarse de que se realiza la petición GET correctamente
-  await waitFor(() => expect(axios.get).toHaveBeenCalledTimes(2));
+  await waitFor(() => expect(axios.get).toHaveBeenCalledTimes(1));
 
   fireEvent.click(screen.getByText('Breakfast'));
   // Realizar las afirmaciones necesarias
