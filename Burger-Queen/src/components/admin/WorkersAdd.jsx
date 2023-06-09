@@ -1,11 +1,11 @@
-import { useState, useContext } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
-import { AuthContext } from '../../AuthContext';
+//import { AuthContext } from '../../AuthContext';
 import MenuVerticalAdmin from './MenuVerticalAdmin';
 
 
 const WorkersAdd = () => {
-  const { token } = useContext(AuthContext);
+  //const { token } = useContext(AuthContext);
   const [newWorker, setNewWorker] = useState({ id: '', email: '', password: '', role: '' });
 
   const handleInputChange = (event) => {
@@ -13,14 +13,10 @@ const WorkersAdd = () => {
     setNewWorker({ ...newWorker, [name]: value });
   };
 
-  const handleAddWorker = async (uid) => {
+  const addWorker = async () => {
     try {
-      const response = await axios.delete(`http://localhost:8080/users/${uid}`, {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      });
-      handleAddWorker(response.data);
+       await axios.post(`http://localhost:8080/users/`, newWorker)
+     
     } catch (error) {
       console.error('Error al agregar el trabajador:', error);
     }
@@ -62,7 +58,7 @@ const WorkersAdd = () => {
           <option value="waiter">Waiter</option>
           <option value="chef">Chef</option>
         </select>
-        <button type="button" onClick={handleAddWorker}>Add</button>
+        <button type="button" onClick={addWorker}>Add</button>
       </form>
     </div>
   );

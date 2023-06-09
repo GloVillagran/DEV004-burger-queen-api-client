@@ -26,40 +26,47 @@ const [editedWorker, setEditedWorker] = useState(null);
       });
       setWorkers(response.data);
     } catch (error) {
-      console.error('Error al obtener los trabajadores:', error);
+      console.error('Error getting workers:', error);
     }
   };
 
   
-    const editWorker = (worker) => {
-      setIsModalOpen(true);
-      setEditedWorker(worker);
-    };
+  const editWorker = async (worker) => {
+    setIsModalOpen(true);
+    try {
+      const response = await axios.get(`http://localhost:8080/users/${worker.id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+      setEditedWorker(response.data);
+    } catch (error) {
+      console.error('Error getting workers:', error);
+    }
+  };
 
     const closeModal = () => {
       setIsModalOpen(false);
+      setEditedWorker(null);
     };
     
-    const updateWorker = async (uid) => {
+    const updateWorker = async (uid, updatedData) => {
       try {
-        const response = await axios.patch(
-          `http://localhost:8080/users/${uid}`,
-          
-          {
-            headers: {
-              Authorization: `Bearer ${token}`
-            }
-          }
-        );
+        const response = await axios.patch(`http://localhost:8080/users/${uid}`, 
+        updatedData,
+        {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+        closeModal();
         // Actualiza los datos de los trabajadores
-        fetchWorkers(response.data);
+       fetchWorkers(response.data);
       } catch (error) {
-        console.error('Error al actualizar el trabajador:', error);
+        console.error('Failed to update worker:', error);
       }
     };
     
-  
-
   const deleteWorker = async (uid) => {
     try {
       const response = await axios.delete(`http://localhost:8080/users/${uid}`, {
@@ -69,13 +76,13 @@ const [editedWorker, setEditedWorker] = useState(null);
       });
       fetchWorkers(response.data);
     } catch (error) {
-      console.error('Error al eliminar el trabajador:', error);
+      console.error('Error deleting worker:', error);
     }
   };
 
   const renderWorkers = () => {
     if (workers.length === 0) {
-      return <p>No hay trabajadores disponibles.</p>;
+      return <p>No workers available.</p>;
     }
 
     return (
