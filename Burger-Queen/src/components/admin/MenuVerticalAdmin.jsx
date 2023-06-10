@@ -44,10 +44,10 @@ const MenuVerticalAdmin = () => {
           {productsOpen && (
             <ul>
               <li>
-                <Link to="/products/list">List</Link>
+                <Link to="/productsList">ProductsList</Link>
               </li>
               <li>
-                <Link to="/products/add">Add</Link>
+                <Link to="/productsAdd">ProductsAdd</Link>
               </li>
             </ul>
           )}

@@ -14,6 +14,8 @@ import './index.css'
 import { AuthProvider } from '../src/AuthContext'
 import WorkersList from "./components/admin/WorkersList";
 import WorkersAdd from './components/admin/WorkersAdd'
+import ProductsList from "./components/admin/ProductsList.jsx";
+import ProductsAdd from "./components/admin/ProductsAdd.jsx";
 
 
 const router = createBrowserRouter([
@@ -52,6 +54,14 @@ const router = createBrowserRouter([
   {
     path: 'workersAdd',
     element: <WorkersAdd/>
+  },
+  {
+    path: 'productsList',
+    element: <ProductsList/>
+  },
+  {
+    path: 'productsAdd',
+    element: <ProductsAdd/>
   } 
 ]);
 
