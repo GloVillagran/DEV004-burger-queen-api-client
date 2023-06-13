@@ -1,11 +1,7 @@
 .menu-vertical {
-    width: 150px;
-    position: fixed;
-    top: 0;
-    left: 0;
+    flex: 0.5;
+    background-color: #BB6748;
     height: 100vh;
-    background-color:#BB6748;
-    padding: 10px;
   }
   
   ul {

@@ -160,30 +160,33 @@ function Waiter() {
     <div className="Waiter">
       <MenuVerticalWaiter /> 
       <div className="content">
+        
+      <input
+          type="text"
+          id="name"
+          placeholder="Client name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        /> 
+      <div className='options'>
         <button
           onClick={(e) => handleClick(e, 'Desayuno')}
           className={`breakfast ${selectedMenu === 'Desayuno' ? 'active' : ''}`}
         >
           Breakfast
         </button>
-
         <button
           onClick={(e) => handleClick(e, 'Almuerzo')}
           className={`lunch ${selectedMenu === 'Almuerzo' ? 'active' : ''}`}
         >
           Lunch
         </button> 
-
-        <input
-          type="text"
-          id="name"
-          placeholder="Client name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        /> <br />
+        </div>
+        
         {/* <h3 className="options">Options</h3> */}
 
         {selectedMenu === 'Desayuno' && (
+          <div className='waiter-products'>
           <>
             {products &&
               products
@@ -201,9 +204,11 @@ function Waiter() {
                   </div>
                 ))}
           </>
+          </div>
         )}
 
         {selectedMenu === 'Almuerzo' && (
+            <div className='waiter-products'>
           <>
             {products &&
               products
@@ -211,7 +216,7 @@ function Waiter() {
                 .map((product, productIndex) => (
                   <div key={productIndex} className="product">
                     <h2>
-                      <i className='nameProduct'>{product.name}</i>
+                      <i >{product.name}</i>
                     </h2>
                     <img src={product.image} alt={product.name} />
                     <p>Price: ${product.price}</p>
@@ -221,6 +226,7 @@ function Waiter() {
                   </div>
                 ))}
           </>
+          </div>
         )}
       </div>
       {/* Se le pasa los props al componente para que pueda acceder a los productos del carrito, agregar y eliminar */}
