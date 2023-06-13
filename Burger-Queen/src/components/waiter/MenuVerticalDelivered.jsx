@@ -22,9 +22,9 @@ const MenuVertical = () => {
   return (
     <div className="menu-vertical">
       <ul className='cajaMenu'>
-      <li><Link to="/waiter">Home</Link></li> {/* Utiliza Link para redirigir a la página de inicio */}
-        <li><Link to="/waiter">Menu</Link></li> {/* Utiliza Link para redirigir a la página de Orders */}
-        <li onClick={handleLogout}>LogOut</li> {/* Agregar el onClick para llamar a la función handleLogout */}
+      <li><Link className='home' to="/waiter">HOME</Link></li> {/* Utiliza Link para redirigir a la página de inicio */}
+        <li><Link className='menu' to="/waiter">MENU</Link></li> {/* Utiliza Link para redirigir a la página de Orders */}
+        <li onClick={handleLogout}>LOGOUT</li> {/* Agregar el onClick para llamar a la función handleLogout */}
       </ul>
     </div>
   );

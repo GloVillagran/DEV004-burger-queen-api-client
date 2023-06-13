@@ -13,7 +13,12 @@
 }
 
 .productsReady {
-  margin-block-start: 5%;
+  margin-block-start: 20%;
+  background-color: #BB6748;
+  width: 100%;
+  display: block;
+  
+
 }
 
 /* Estilos para la lista de pedidos */
@@ -21,6 +26,11 @@ ul {
     list-style-type: none;
     padding: 0;
     background-color: #BB6748;
+  }
+
+  .pedidosdelivered{
+    border-radius: 10px;
+    
   }
   
   /* Estilos para cada caja de pedido */
@@ -31,8 +41,11 @@ ul {
     background-color: #BB6748;
   }
   .products { 
-    background-color: #6D2B02 ;
+    width: 100%;
+    background-color: black ;
     border-radius: 10px;
+    margin-block-start: 10%;
+   
   }
   /* Estilos para el botón Send */
  .buttonSend {

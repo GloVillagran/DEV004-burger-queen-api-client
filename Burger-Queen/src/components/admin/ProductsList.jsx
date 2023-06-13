@@ -1,117 +1,128 @@
-import { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
 import MenuVerticalAdmin from './MenuVerticalAdmin';
 import { AuthContext } from '../../AuthContext';
 import EditProducts from './EditProducts';
 
 const ProductsList = () => {
-    const { token } = useContext(AuthContext);
-    const [products, setProducts] = useState([]);
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [editedProduct, setEditedProduct] = useState(null);
+  const { token } = useContext(AuthContext);
+  const [products, setProducts] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [editedProduct, setEditedProduct] = useState(null);
 
+  useEffect(() => {
+    fetchProducts();
+  }, [token]);
 
-    useEffect(() => {
-        fetchProducts();
-      }, [token]);
-    
-        // Hacer la solicitud a la API simulada
-    const fetchProducts = async () => {
-        try {
-            const response = await axios.get('http://localhost:8080/products', {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            });
-            setProducts(response.data);
-
-        } catch (error) {
-            console.error('Error getting workers:', error);
+  const fetchProducts = async () => {
+    try {
+      const response = await axios.get('http://localhost:8080/products', {
+        headers: {
+          Authorization: `Bearer ${token}`
         }
-    };
+      });
+      setProducts(response.data);
+    } catch (error) {
+      console.error('Error getting products:', error);
+    }
+  };
 
-    const editProducts = async (productId) => {
-        setIsModalOpen(true);
-        try {
-            const response = await axios.get(`http://localhost:8080/products/${productId}`, {
-              headers: {
-                Authorization: `Bearer ${token}`
-              }
-            });
-            setEditedProduct(response.data);
-        } catch (error) {
-                console.error('Error getting workers:', error);
-              }
-       /*  // Lógica para editar el producto con el ID dado
-        console.log(`Editar producto con ID: ${productId}`); */
-    };
-    const closeModal = () => {
-        setIsModalOpen(false);
-        setEditedProduct(null);
-      };
+  const editProduct = async (productId) => {
+    setIsModalOpen(true);
+    try {
+      const response = await axios.get(`http://localhost:8080/products/${productId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+      setEditedProduct(response.data);
+    } catch (error) {
+      console.error('Error getting product:', error);
+    }
+  };
 
-      const updateProduct = async (productId, updatedData) => {
-        try {
-          const response = await axios.patch(`http://localhost:8080/products/${productId}`, 
-          updatedData,
-          {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        });
-          closeModal();
-          // Actualiza los datos de los trabajadores
-          fetchProducts(response.data);
-        } catch (error) {
-          console.error('Failed to update worker:', error);
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setEditedProduct(null);
+  };
+
+  const updateProduct = async (productId, updatedData) => {
+    try {
+      await axios.patch(`http://localhost:8080/products/${productId}`, updatedData, {
+        headers: {
+          Authorization: `Bearer ${token}`
         }
-      };
-      
-    const deleteProduct = async (productId) => {
-        try {
-          const response = await axios.delete(`http://localhost:8080/products/${productId}`, {
-            headers: {
-              Authorization: `Bearer ${token}`
-            }
-          });
-          fetchProducts(response.data);
-        } catch (error) {
-          console.error('Error deleting product:', error);
+      });
+      closeModal();
+      fetchProducts();
+    } catch (error) {
+      console.error('Failed to update product:', error);
+    }
+  };
+
+  const deleteProduct = async (productId) => {
+    try {
+      await axios.delete(`http://localhost:8080/products/${productId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`
         }
-      };
-    const renderProducts = () => {
-        if (products.length === 0) {
-          return <p>No products available.</p>;
-        }
+      });
+      fetchProducts();
+    } catch (error) {
+      console.error('Error deleting product:', error);
+    }
+  };
+
+  const renderProducts = () => {
+    if (products.length === 0) {
+      return <p>No products available.</p>;
+    }
+
     return (
-        <div>
-            <MenuVerticalAdmin />
-           
-            {products && products.map(product => (
-                <div key={product.id}>
-                    <p>{product.name}</p>
-                    <p>$:{product.price}</p>
-                    <img src={product.image} alt={product.name} />
-                    <p>{product.type}</p>
-                    <button onClick={() => editProducts(product.id)}>Edit</button>
-                    <button onClick={() => deleteProduct(product.id)}>Delete</button>
-                </div>
-            ))}
-            
-      <EditProducts
-      isOpen={isModalOpen}
-      product={editedProduct}
-      closeModal={closeModal}
-      updateProduct={updateProduct}
-    />
-        </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Image</th>
+            <th>Type</th>
+            <th>Edit</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          {products.map(product => (
+            <tr key={product.id}>
+              <td>{product.name}</td>
+              <td>${product.price}</td>
+              <td>
+                <img className='imgProducts' src={product.image} alt={product.name} />
+              </td>
+              <td>{product.type}</td>
+              <td>
+                <button className='edit' onClick={() => editProduct(product.id)}>Edit</button>
+              </td>
+              <td>
+                <button className='delete' onClick={() => deleteProduct(product.id)}>Delete</button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     );
-};
+  };
 
-return (
+  return (
     <div>
-      <h3>List Products</h3>
+      <h3>LIST PRODUCTS</h3>
+      <MenuVerticalAdmin />
       {renderProducts()}
+      <EditProducts
+        isOpen={isModalOpen}
+        product={editedProduct}
+        closeModal={closeModal}
+        updateProduct={updateProduct}
+      />
     </div>
   );
 };

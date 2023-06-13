@@ -1,4 +1,4 @@
-import logo from '../assets/img/2.png'
+import logo from '../assets/img/burgerQueen.png'
 import { Link } from 'react-router-dom'
 
 
@@ -7,13 +7,13 @@ function Home() {
       <img className='logoHome' src={logo} /> <br />
 
       <Link to="/login">
-        <button>Admin</button>
+        <button>ADMIN</button>
       </Link><br />
       <Link to="/login">
-        <button>Waiter</button>
+        <button>WAITER</button>
       </Link><br />
       <Link to="/login">
-        <button>Chef</button>
+        <button>CHEF</button>
       </Link><br />
 
     </div>

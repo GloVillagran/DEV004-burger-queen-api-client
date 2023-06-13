@@ -180,7 +180,7 @@ function Waiter() {
           placeholder="Client name"
           value={name}
           onChange={(e) => setName(e.target.value)}
-        />
+        /> <br />
         {/* <h3 className="options">Options</h3> */}
 
         {selectedMenu === 'Desayuno' && (

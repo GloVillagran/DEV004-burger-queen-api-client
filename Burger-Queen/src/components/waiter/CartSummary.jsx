@@ -29,12 +29,12 @@ function CartSummary({ cart, removeFromCart, increaseQuantity, decreaseQuantity,
                   <p>Price: ${product.price}</p>
                   <p>Quantity: {product.quantity}</p>
                     <div className="button-group">
-                      <button onClick={() => increaseQuantity(product)}>+</button> 
+                      <button className="increaseQuantity" onClick={() => increaseQuantity(product)}>+</button> 
                       {/* llama a la función increaseQuantity. Se pasa el producto como argumento a la función. */}
 
-                      <button onClick={() => decreaseQuantity(product)}>-</button>
+                      <button className="decreaseQuantit" onClick={() => decreaseQuantity(product)}>-</button>
                     </div>
-                    <button onClick={() => removeFromCart(product)}>Remove</button>
+                    <button className="removeFromCart" onClick={() => removeFromCart(product)}>Remove</button>
                   </section>
               </div>
             ))}
@@ -48,3 +48,4 @@ function CartSummary({ cart, removeFromCart, increaseQuantity, decreaseQuantity,
 }
 
 export default CartSummary;
+

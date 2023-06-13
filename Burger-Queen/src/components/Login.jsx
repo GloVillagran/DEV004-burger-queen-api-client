@@ -1,4 +1,4 @@
-import logo from '../assets/img/2.png'
+import logo from '../assets/img/burgerQueen.png'
 import { useState, useContext, useEffect } from 'react';
 import { AuthContext } from '../AuthContext';
 import axios from 'axios';
@@ -76,7 +76,7 @@ const Login = () => {
         <div>
           <input id="password" type="password" value={password} onChange={handlePasswordChange} placeholder="Password" />
         </div> <br />
-        <button type="submit">Login</button>
+        <button className= 'login' type="submit">LOGIN</button>
         <Link to="/">Back to home</Link>
       </form>
     </div>

@@ -1,10 +1,10 @@
 .menu-vertical {
-    width: 200px;
+    width: 150px;
     position: fixed;
     top: 0;
     left: 0;
     height: 100vh;
-    background-color:black;
+    background-color:#BB6748;
     padding: 10px;
   }
   
@@ -13,16 +13,38 @@
     padding: 0;
   }
   .cajaMenu {
-    background-color: black;
+    background-color: #BB6748;
   }
   
   li {
     padding: 10px;
     color: white;
+    font-weight: bold;
     border-bottom: 1px solid #ddd;
   }
-  
-  li:hover {
-    background-color: #BB6748;
+  .home{
+    color: white;
   }
+  .orders {
+    color: white;
+  }
+  .menu{
+    color: white;
+  }
+ .menu-vertical li a:hover {
+  background-color: black; /* Color de texto al pasar el mouse */
+}
+.logout:hover {
+  background-color: black; /* Color de texto al pasar el mouse */
+}
+
+
+.workersList, .workersAdd, .productList, .productAdd {
+  color: black;
+}
+
+
+
+
+
   

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import ReactModal from 'react-modal';
+import '../style.css/modalProducts.css'
 
 /* Establecer el elemento de la aplicación, es importante para garantizar que los lectores de pantalla 
 no accedan al contenido principal cuando el modal está abierto. */
@@ -42,45 +43,49 @@ const EditProducts = ({ isOpen, product, closeModal, updateProduct }) => {
 
   return (
     <ReactModal isOpen={isOpen} onRequestClose={closeModal}>
-      <form onSubmit={(e) => handleSubmit(e, editedData.id)}>
-        <label>Id:</label>
+      <form className='formModal' onSubmit={(e) => handleSubmit(e, editedData.id)}>
+        <label className='ID'>Id:</label>
         <input
+          className='idModal'
           type="text"
           name="id"
           value={editedData.id}
           onChange={handleChange}
         />
-        <label>Name:</label>
+        <label className='NAME' >Name:</label>
         <input
+        className='nameModal'
           type="text"
           name="name"
           value={editedData.name}
           onChange={handleChange}
         />
-        <label>Price:</label>
+        <label className='PRICE' >Price:</label>
         <input
+        className='priceModal'
           type="text"
           name="price"
           value={editedData.price}
           onChange={handleChange}
         />
-        <label>Image:</label>
+        <label className='IMAGE'>Image:</label>
         <input
+        className='imageModal' 
          type="text"
          name="image"
          value={editedData.image}
          onChange={handleChange}
         />
-       <label>Type:</label>
-       <select name="type" value={editedData.type} onChange={handleChange}>
+       <label className='TYPE'>Type:</label>
+       <select className='typeModal' name="type" value={editedData.type} onChange={handleChange}>
           <option value="vacio"></option>
           <option value="breakfast">Breakfast</option>
           <option value="lunch">Lunch</option>
         </select>
         
         {/* Agrega aquí otros campos del formulario */}
-        <button type="submit">Update</button>
-        <button type="button" onClick={handleCancel}>Cancel</button>
+        <button className='update' type="submit">Update</button>
+        <button className='cancel' type="button" onClick={handleCancel}>Cancel</button>
       </form>
     </ReactModal>
   );

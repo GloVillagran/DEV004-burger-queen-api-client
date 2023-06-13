@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import ReactModal from 'react-modal';
+import '../style.css/modalWorkers.css'
 
 /* Establecer el elemento de la aplicación, es importante para garantizar que los lectores de pantalla 
 no accedan al contenido principal cuando el modal está abierto. */
@@ -37,43 +38,46 @@ const EditWorker = ({ isOpen, worker, closeModal, updateWorker }) => {
   const handleCancel = () => {
     closeModal();
   };
-  
-  
+
+
 
   return (
-    <ReactModal isOpen={isOpen} onRequestClose={closeModal}>
-      <form onSubmit={(e) => handleSubmit(e, editedData.id)}>
-        <label>Id:</label>
+    <ReactModal isOpen={isOpen} onRequestClose={closeModal} >
+      <form className='formModal' onSubmit={(e) => handleSubmit(e, editedData.id)}>
+        <label className='ID'>Id:</label>
         <input
+          className='idModal'
           type="text"
           name="id"
           value={editedData.id}
           onChange={handleChange}
         />
-        <label>Email:</label>
+        <label className='EMAIL'>Email:</label>
         <input
+          className='emailModal'
           type="text"
           name="email"
           value={editedData.email}
           onChange={handleChange}
         />
-        <label>Password:</label>
+        <label className='PASSWORD'>Password:</label>
         <input
+          className='passwordModal'
           type="password"
           name="password"
           value={editedData.password}
           onChange={handleChange}
           autoComplete="current-password"
         />
-       <label>Rol:</label>
-        <select name="role" value={editedData.role} onChange={handleChange}>
+        <label className='ROL'>Rol:</label>
+        <select className='rolModal' name="role" value={editedData.role} onChange={handleChange}>
           <option value="admin">Admin</option>
           <option value="chef">Chef</option>
           <option value="waiter">Waiter</option>
         </select>
         {/* Agrega aquí otros campos del formulario */}
-        <button type="submit">Update</button>
-        <button type="button" onClick={handleCancel}>Cancel</button>
+        <button className='update' type="submit">Update</button>
+        <button className='cancel' type="button" onClick={handleCancel}>Cancel</button>
       </form>
     </ReactModal>
   );

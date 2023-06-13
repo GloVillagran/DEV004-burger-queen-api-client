@@ -2,8 +2,7 @@ import { useState, useContext } from 'react';
 import axios from 'axios';
 import { AuthContext } from '../../AuthContext';
 import MenuVerticalAdmin from './MenuVerticalAdmin';
-
-
+import '../style.css/admin.css'; // Ruta al archivo CSS con los estilos
 
 const ProductsAdd = () => {
   const { token } = useContext(AuthContext);
@@ -26,7 +25,7 @@ const ProductsAdd = () => {
         headers: {
           Authorization: `Bearer ${token}`
         }
-    });
+      });
 
       console.log(response.data); // Hacer algo con la respuesta de la API
 
@@ -45,15 +44,15 @@ const ProductsAdd = () => {
     setPreviewImage(image);
   };
 
-
   return (
-    <div>
-         <MenuVerticalAdmin />
+    <div className="form-containerProducts">
+      <MenuVerticalAdmin />
       <h2>Add Products</h2>
       <form onSubmit={handleSubmit}>
         <label>
           Name:
           <input
+          className='name'
             type="text"
             value={productName}
             onChange={(e) => setProductName(e.target.value)}
@@ -63,6 +62,7 @@ const ProductsAdd = () => {
         <label>
           Type:
           <input
+          className='type'
             type="text"
             value={productType}
             onChange={(e) => setProductType(e.target.value)}
@@ -72,6 +72,7 @@ const ProductsAdd = () => {
         <label>
           Price: $
           <input
+          className='price'
             type="number"
             value={productPrice}
             onChange={(e) => setProductPrice(e.target.value)}
@@ -79,8 +80,9 @@ const ProductsAdd = () => {
           />
         </label>
         <label>
-        Image URL:
+          Image URL:
           <input
+          className='image'
             type="text"
             value={image}
             onChange={(e) => setImageUrl(e.target.value)}
@@ -89,10 +91,9 @@ const ProductsAdd = () => {
           />
         </label>
         <label>
-        Previous image:
           {previewImage && <img src={previewImage} alt="Imagen previa" style={{ maxWidth: '200px' }} />}
         </label>
-        <button type="submit">Add</button>
+        <button className='addproduct' type="submit">Add</button>
       </form>
     </div>
   );

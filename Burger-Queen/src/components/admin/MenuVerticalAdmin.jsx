@@ -27,32 +27,32 @@ const MenuVerticalAdmin = () => {
     <div className="menu-vertical">
       <ul className="cajaMenu">
         <li onClick={toggleWorkers}>
-          Workers
+          WORKERS
           {workersOpen && (
             <ul>
               <li>
-                <Link to="/workersList">WorkersList</Link>
+                <Link className='workersList' to="/workersList">WorkersList</Link>
               </li>
               <li>
-                <Link to="/workersAdd">WorkersAdd</Link>
+                <Link className='workersList' to="/workersAdd">WorkersAdd</Link>
               </li>
             </ul>
           )}
         </li>
         <li onClick={toggleProducts}>
-          Products
+          PRODUCTS
           {productsOpen && (
             <ul>
               <li>
-                <Link to="/productsList">ProductsList</Link>
+                <Link className='productList' to="/productsList">ProductsList</Link>
               </li>
               <li>
-                <Link to="/productsAdd">ProductsAdd</Link>
+                <Link className='productAdd' to="/productsAdd">ProductsAdd</Link>
               </li>
             </ul>
           )}
         </li>
-        <li onClick={handleLogout}>LogOut</li>
+        <li onClick={handleLogout}>LOGOUT</li>
       </ul>
     </div>
   );

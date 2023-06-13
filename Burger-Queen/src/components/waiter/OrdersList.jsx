@@ -70,7 +70,7 @@ function OrdersList() {
               <h4>Products:</h4>
               <ul>
                 {order.products && order.products.map(product => (
-                  <li className='products' key={product.product.id}>
+                  <li className='productsWaiter' key={product.product.id}>
                     {product.product.name} - Qty: {product.qty}
                   </li>
                 ))}

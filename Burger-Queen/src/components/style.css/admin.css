@@ -29,4 +29,138 @@
     cursor: pointer;
     text-decoration: none;
   }
+  .edit, .delete {
+    width: 100%;
+    background-color: black;
+    margin-left: 0%;
+  }
+  .delete{
+    background-color: rgb(220, 12, 12);
+  }
+  .edit{
+    background-color: #4CAF50;
+  }
+
+  .conteinerProducts{
+    
+      display: inline-block;
+      width: 40%; /* Puedes ajustar el ancho deseado */
+      margin: 10px;
+      background-color: #BB6748;
+      color: white;
+      padding: 10px;
+      text-align: center;
+      border-radius: 10px;
+    
+  }
+  .imgProducts{
+    width: 100%;
+    height: 6em;
+  }
+
+  tr{
+    color: white;
+  }
+
+  h3{
+    color: white;
+  }
+
+  label{
+    color: white;
+  }
+
+  /* workers add */
+
+  .form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+   
+    border-radius: 10px;
+    width: 400px;
+    margin-top: 20%;
+    margin-left: 5%;
+    padding: 20px;
+    background-color: #BB6748;
+  }
+  
+  .form-container h3 {
+    margin-top: 0;
+  }
+  
+  .form-container form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    
+  }
+  
+  .form-container input,
+  .form-container select {
+    margin-bottom: 10px;
+  }
+  
+  .form-container button {
+    margin-top: 10px;
+  }
+  .id, .email, .password, .role{
+    width: 230%;
+    height: 2em;
+    border-radius: 5px;
+  }
+  .add{
+    width: 150%;
+    background-color: black;
+  }
+
+  /* productos add */
+
+  .form-containerProducts {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #BB6748;
+    width: 400px;
+    margin-top: 20%;
+    margin-left: 5%;
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  .form-container h2 {
+    margin-top: 0;
+  }
+  
+  .form-container form {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .form-container label {
+    margin-bottom: 10px;
+  }
+  
+  .form-container button {
+    margin-top: 10px;
+  }
+  
+  .form-container img {
+    max-width: 200px;
+  }
+  .name, .type, .price, .image{
+    width: 90%;
+    height: 2em;
+    border-radius: 5px;
+    margin-left: 0%;
+  }
+  .addproduct{
+    background-color: black;
+  margin-left: 0%;
+  }
+
+  
+  
   

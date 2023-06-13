@@ -162,7 +162,7 @@ function OrdersChef() {
       )}
     
     {displayedSection === 'delivered' && (
-  <ul>
+  <ul className='pedidosdelivered'>
     {deliveredOrders.map((order) => {
       // Formatear la fecha y hora
       const formattedDateEntry = new Date(order.dateEntry).toLocaleString();
