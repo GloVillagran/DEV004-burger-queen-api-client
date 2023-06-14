@@ -1,71 +1,138 @@
-.pending {
-    width: 50%;
-}
-  
-.delivered {
-    width: 50%;
-}
-
-.productsPending {
-  background-color: #6D2B02 ;
-  border-radius: 10px;
-  margin-block-start: 5%;
-}
-
-.productsReady {
-  margin-block-start: 20%;
-  background-color: #BB6748;
+.Chef {
+  display: flex;
   width: 100%;
-  display: block;
-  
+  min-height: 100vh;
+  background-color: antiquewhite;
+}
+
+.contentChef {
+  flex: 2;
+  padding: 2em;
+}
+
+.buttonsChef {
+  display: flex;
+  margin-top: 1em;
+  justify-content: space-between;
+}
+
+.buttonsChef>button {
+  background-color: #BB6748;
+  margin: 0;
+  width: 45%;
+  color: white;
+  height: 2.5em;
+  border: none;
+  border-radius: 5px;
+  font-size: medium;
+}
+
+/* .buttonsChef > button.active {
+  background-color: orange;
+  color: #fff;
+  border: none;
+}
+ */
+
+ .pedidosPending {
+background-color: #BB6748;
+display: flex;
+flex-direction: column;
+margin-top: 1em;
+ }
+
+ .pedidosPending > * {
+  flex: 1;
+  margin-top: 1em;
+ }
+ .pedidosdelivered {
+  margin-top: 2em;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  background-color: antiquewhite;
+}
+
+/* Estilos para cada caja de pedido */
+.pedidosChef {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  background-color:#BB6748;
+  border-radius: 10px;
+  height: 40%;
+}
+
+.datosClient{
+  background-color:#4D9506;
+  border: none;
+  text-align: center;
+  margin-top: 0%;
+  width: 100%;
+  border-radius: 5px;
+}
+
+.chefButtons {  
+  margin-top: 1em;
+  display: flex;
+  justify-content: space-between;
+}
+
+.chefButtons > button{
+  height: 2.5em;
+  border-radius: ;
+}
+
+/* .pending {
+  width: 50%;
+}
+
+.delivered {
+  width: 50%;
+} */
+.date{
+  border: none;
+  text-align: center;
+  margin-top: 0%;
+  width: 100%;
+  border-radius: 5px;
+   
+}
+
+.productsChef{
+  background-color: #6D2B02;
+  border-radius: 10px;
 
 }
+/* Estilos para el botón Send */
+.buttonSend {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  margin-right: 5px;
+  cursor: pointer;
+  width: 35%;
+}
+
+/* Estilos para el botón Cancel */
+.buttonCancel {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  width: 35%;
+}
+
 
 /* Estilos para la lista de pedidos */
 ul {
-    list-style-type: none;
-    padding: 0;
-    background-color: #BB6748;
-  }
+  list-style-type: none;
+  padding: 0;
+  background-color: #6D2B02;
+}
 
-  .pedidosdelivered{
-    border-radius: 10px;
-    
-  }
-  
-  /* Estilos para cada caja de pedido */
-  .pedidos {
-    border-radius: 10px;
-    padding: 10px;
-    margin-bottom: 10px;
-    background-color: #BB6748;
-  }
-  .products { 
-    width: 100%;
-    background-color: black ;
-    border-radius: 10px;
-    margin-block-start: 10%;
-   
-  }
-  /* Estilos para el botón Send */
- .buttonSend {
-    background-color: #4caf50;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    margin-right: 5px;
-    cursor: pointer;
-    width: 35%;
-  }
-  
-  /* Estilos para el botón Cancel */
-  .buttonCancel {
-    background-color: #f44336;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-    width: 35%;
-  }
-  
-  
+li {
+  border-bottom: 0 ;
+}

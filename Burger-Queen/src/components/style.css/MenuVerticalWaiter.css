@@ -1,46 +1,57 @@
 .menu-vertical {
-    flex: 0.5;
-    background-color: #BB6748;
-    height: 100vh;
-  }
-  
-  ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  .cajaMenu {
-    background-color: #BB6748;
-  }
-  
-  li {
-    padding: 10px;
-    color: white;
-    font-weight: bold;
-    border-bottom: 1px solid #ddd;
-  }
-  .home{
-    color: white;
-  }
-  .orders {
-    color: white;
-  }
-  .menu{
-    color: white;
-  }
- .menu-vertical li a:hover {
-  background-color: black; /* Color de texto al pasar el mouse */
+  flex: 0.5;
+  background-color: #BB6748;
+  height: 100vh;
 }
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.cajaMenu {
+  background-color: #BB6748;
+}
+
+li {
+  padding: 10px;
+  color: white;
+  font-weight: bold;
+  border-bottom: 1px solid #ddd;
+}
+
+.home {
+  color: white;
+}
+
+.orders {
+  color: white;
+}
+
+.menu {
+  color: white;
+}
+
+.menu-vertical li a:hover {
+  background-color: black;
+  /* Color de texto al pasar el mouse */
+}
+
 .logout:hover {
-  background-color: black; /* Color de texto al pasar el mouse */
+  background-color: black;
+  /* Color de texto al pasar el mouse */
 }
 
 
-.workersList, .workersAdd, .productList, .productAdd {
+.workersList,
+.workersAdd,
+.productList,
+.productAdd {
   color: black;
 }
 
-
-
-
-
-  
+.menu-vertical-delivered {
+  flex: 0.3;
+  background-color: #BB6748;
+  height: 100vh;
+}

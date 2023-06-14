@@ -20,7 +20,7 @@ const MenuVertical = () => {
   };
 
   return (
-    <div className="menu-vertical">
+    <div className="menu-vertical-delivered">
       <ul className='cajaMenu'>
       <li><Link className='home' to="/waiter">HOME</Link></li> {/* Utiliza Link para redirigir a la página de inicio */}
         <li><Link className='menu' to="/waiter">MENU</Link></li> {/* Utiliza Link para redirigir a la página de Orders */}

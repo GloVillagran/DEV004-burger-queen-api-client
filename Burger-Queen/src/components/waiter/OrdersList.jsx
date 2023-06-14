@@ -54,11 +54,12 @@ function OrdersList() {
   return (
     <div className='DeliveredOrders'>
       <MenuVerticalDelivered />
-      <h2>Delivering Orders</h2>
+      <div className='content-orderList'>
+      <h2 className='textDelivering' >Delivering Orders</h2>
       {deliveredOrders.length === 0 ? (
         <p>No delivered orders available</p>
       ) : (
-        <ul>
+        <ul className='order-list-delivered' >
           {deliveredOrders && deliveredOrders.map(order => (
             <li className='pedidos' key={order.id}>
               <div className='client'>
@@ -79,7 +80,9 @@ function OrdersList() {
             </li>
           ))}
         </ul>
+       
       )}
+       </div>
     </div>
   );
 }

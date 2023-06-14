@@ -10,7 +10,7 @@ function CartSummary({ cart, removeFromCart, increaseQuantity, decreaseQuantity,
     <div className="Cart">
       <div>
         <h3 className='CartSummary'>Cart Summary</h3>
-        {clientName && <p>Client Name: {clientName}</p>}
+        {clientName && <p className="clientName">Client Name: {clientName}</p>}
       </div>
       <div className="cart-products">
 

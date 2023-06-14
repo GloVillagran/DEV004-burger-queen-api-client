@@ -47,7 +47,9 @@ const ProductsAdd = () => {
   return (
     <div className="form-containerProducts">
       <MenuVerticalAdmin />
+      <div className='contentAddProduct'>
       <h2>Add Products</h2>
+      <div className='formAddProduct'>
       <form onSubmit={handleSubmit}>
         <label>
           Name:
@@ -95,6 +97,8 @@ const ProductsAdd = () => {
         </label>
         <button className='addproduct' type="submit">Add</button>
       </form>
+      </div>
+      </div>
     </div>
   );
 };

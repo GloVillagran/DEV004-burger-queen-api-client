@@ -23,7 +23,10 @@ const WorkersAdd = () => {
   return (
     <div className="form-container">
       <MenuVerticalAdmin />
+      <div className='contentAdd'>
       <h2>Add Workers</h2>
+      
+      <div className='formAdd'>
       <form>
         <input
           className='id'
@@ -62,6 +65,8 @@ const WorkersAdd = () => {
         </select>
         <button className='add' type="button" onClick={addWorker}>Add</button>
       </form>
+      </div>
+      </div>
     </div>
   );
 };

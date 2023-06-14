@@ -1,4 +1,4 @@
-import logo from '../assets/img/burgerQueen.png'
+import logo from '../assets/img/2.png'
 import { useState, useContext, useEffect } from 'react';
 import { AuthContext } from '../AuthContext';
 import axios from 'axios';
@@ -65,17 +65,15 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <img src={logo} className='logoLogin' /> <br />
-      <h2>Welcome</h2>
-      <p>{errorMessage}</p>
-      <form onSubmit={handleSubmit}>
-        <div>
+    <div className='containerLogin'>
+      <div>
+      <img src={logo} className='logoLogin' />
+      </div>
+      <h1 className='Welcome'>Welcome</h1>
+      <p className='errorMessage'>{errorMessage}</p>
+      <form className='formLogin' onSubmit={handleSubmit}>
           <input id="email" type="email" value={email} onChange={handleEmailChange} placeholder="Email" />
-        </div>
-        <div>
           <input id="password" type="password" value={password} onChange={handlePasswordChange} placeholder="Password" />
-        </div> <br />
         <button className= 'login' type="submit">LOGIN</button>
         <Link to="/">Back to home</Link>
       </form>

@@ -6,7 +6,7 @@ const AdminHome = () => {
   return (
     <div className="admin-home">
       <MenuVerticalAdmin />
-      <div className="button-container">
+      <div className="contentAdmin">
         {/*  <button className="buttonList">List</button>
         <button className="buttonAdd/Delete">Add/Delete</button>
         <button className="buttonUpdate">Update</button> */}

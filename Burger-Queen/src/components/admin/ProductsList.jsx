@@ -79,7 +79,8 @@ const ProductsList = () => {
     }
 
     return (
-      <table>
+      <table className='tableProducts'>
+        <div className='TitleProducts'>
         <thead>
           <tr>
             <th>Name</th>
@@ -90,7 +91,9 @@ const ProductsList = () => {
             <th>Delete</th>
           </tr>
         </thead>
-        <tbody>
+        </div>
+        <div className='contentTableProduct'>
+        <tbody >
           {products.map(product => (
             <tr key={product.id}>
               <td>{product.name}</td>
@@ -108,14 +111,16 @@ const ProductsList = () => {
             </tr>
           ))}
         </tbody>
+        </div>
       </table>
     );
   };
 
   return (
-    <div>
-      <h3>LIST PRODUCTS</h3>
+    <div className='ProductList'>
       <MenuVerticalAdmin />
+      <div className='contentListProduct'>
+      <h3>LIST PRODUCTS</h3>
       {renderProducts()}
       <EditProducts
         isOpen={isModalOpen}
@@ -123,6 +128,7 @@ const ProductsList = () => {
         closeModal={closeModal}
         updateProduct={updateProduct}
       />
+      </div>
     </div>
   );
 };

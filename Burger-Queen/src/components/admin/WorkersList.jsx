@@ -79,7 +79,8 @@ const WorkersList = () => {
     }
 
     return (
-      <table>
+      <table className='table'>
+        <div className='TitleTable'>
         <thead>
           <tr>
             <th>ID</th>
@@ -89,7 +90,9 @@ const WorkersList = () => {
             <th>Delete</th>
           </tr>
         </thead>
-        <tbody>
+        </div>
+        <div className='contentTable'>
+        <tbody className='contentTable'>
           {workers.map(worker => (
             <tr key={worker.id}>
               <td>{worker.id}</td>
@@ -104,21 +107,26 @@ const WorkersList = () => {
             </tr>
           ))}
         </tbody>
+        </div>
       </table>
     );
   };
 
   return (
-    <div>
-      <h3>LIST WORKERS</h3>
+    <div className='WorkerList'>
       <MenuVerticalAdmin />
+      <div className='contentList'>
+      <h3>LIST WORKERS</h3>
       {renderWorkers()}
+      
+      
       <EditWorker
         isOpen={isModalOpen}
         worker={editedWorker}
         closeModal={closeModal}
         updateWorker={updateWorker}
       />
+      </div>
     </div>
   );
 };

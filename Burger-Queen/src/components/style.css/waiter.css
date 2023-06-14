@@ -2,7 +2,7 @@
   display: flex;
   width: 100%;
   min-height: 100vh;
-  background-color: antiquewhite;
+  background-color: #faebd7;
 }
 
 
@@ -57,7 +57,7 @@ justify-content: space-between;
 }
 
 .Send {
-  background-color: #4e2626;
+  background-color: green;
   margin: 0;
   width: 100%;
   color: white;
@@ -213,8 +213,12 @@ ul.productsWaiter {
 }
 
 .CartSummary {
-  
+  color: white;
   margin-left: 1em;
+}
+
+.clientName {
+ margin-left: 1em;
 }
 
 .cart-products {
@@ -238,6 +242,7 @@ ul.productsWaiter {
   color: white;
   font-weight: bold;
   margin-block-start: 5%;
+
 }
 
 .item-actions {
@@ -285,7 +290,7 @@ ul.productsWaiter {
 
 .increaseQuantity {
   width: 30%;
-  background: #BB6748;
+  background: orange;
 }
 
 .decreaseQuantit {
@@ -294,7 +299,7 @@ ul.productsWaiter {
 }
 
 .removeFromCart {
-  background: #BB6748;
+  background: red;
   margin-left: 0%
 }
 

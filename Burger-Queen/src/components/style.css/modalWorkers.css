@@ -21,10 +21,20 @@
 
 .update {
   background-color: green;
-  width: 40%;
+  margin: 0;
+  width: 100%;
+  color: white;
+  height: 2.5em;
+  border: none;
+  border-radius: 5px;
 }
 
 .cancel {
   background-color: red;
-  width: 40%;
+  margin: 0;
+  width: 100%;
+  color: white;
+  height: 2.5em;
+  border: none;
+  border-radius: 5px;
 }
