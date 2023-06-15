@@ -1,13 +1,17 @@
 import { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
 import MenuVerticalDelivered from './MenuVerticalDelivered';
+import Alert from '../Alert'
 import { AuthContext } from '../../AuthContext';
+
 import '../style.css/ordersWaiter.css';
 
 // para almacenar la lista de pedidos en estado "delivered"
 function OrdersList() {
   const { token, user, updateDeliveredOrdersFromWaiter } = useContext(AuthContext);
   const [deliveredOrders, setDeliveredOrders] = useState([]);
+const [showAlert, setShowAlert] = useState(false);
+
 
   /* realizamos la solicitud GET a la API mock y
    la URL adecuada para obtener los pedidos con el estado "delivered". */
@@ -43,8 +47,9 @@ function OrdersList() {
 
       const updatedOrders = deliveredOrders.filter(order => order.id !== orderId);
       setDeliveredOrders(updatedOrders);
-    
-      updateDeliveredOrdersFromWaiter(updatedOrders);
+      //updateDeliveredOrdersFromWaiter(updatedOrders);
+
+      setShowAlert(true); // Mostrar el mensaje de alerta cuando se marca un pedido como entregado
     } catch (error) {
       console.error(error);
     }
@@ -57,7 +62,7 @@ function OrdersList() {
       <div className='content-orderList'>
       <h2 className='textDelivering' >Delivering Orders</h2>
       {deliveredOrders.length === 0 ? (
-        <p>No delivered orders available</p>
+        <p className='noDelivered'>No delivered orders available</p>
       ) : (
         <ul className='order-list-delivered' >
           {deliveredOrders && deliveredOrders.map(order => (
@@ -80,10 +85,12 @@ function OrdersList() {
             </li>
           ))}
         </ul>
-       
+      )}
+      {showAlert && (
+        <Alert type="success" message="Done, order delivered!!!" onClose={() => setShowAlert(false)} />
       )}
        </div>
-    </div>
+        </div>
   );
 }
 

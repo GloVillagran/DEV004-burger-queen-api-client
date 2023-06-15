@@ -1,10 +1,22 @@
-
+import { useState } from 'react';
+import Alert from '../Alert'
 
 function CartSummary({ cart, removeFromCart, increaseQuantity, decreaseQuantity, clientName, sendOrder, backToMenu}) {
-  
+  const [showAlert, setShowAlert] = useState(false);
   const calculateTotal = () => {
     return cart.reduce((total, product) => total + product.price * product.quantity, 0);
   };
+
+  const handleSendOrder = () => {
+    sendOrder();
+    setShowAlert(true);
+  };
+
+  const handleBackToMenu = () => {
+    setShowAlert(false);
+    backToMenu();
+  };
+
 
   return (
     <div className="Cart">
@@ -38,10 +50,12 @@ function CartSummary({ cart, removeFromCart, increaseQuantity, decreaseQuantity,
                   </section>
               </div>
             ))}
-            <button className='Send' onClick={sendOrder}>Send Order: ${calculateTotal()}</button>
-            <h4 onClick={backToMenu}>Back to Menu</h4>
+            <button className='Send' onClick={handleSendOrder}>Send Order: ${calculateTotal()}</button>
+           
+            <h4 onClick={handleBackToMenu}>Back to Menu</h4>
           </>
         )}
+          {showAlert && <Alert type="success" message="Order sent to kitchen" />}
       </div>
     </div>
   );

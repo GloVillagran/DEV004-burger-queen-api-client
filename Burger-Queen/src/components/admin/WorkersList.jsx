@@ -80,7 +80,7 @@ const WorkersList = () => {
 
     return (
       <table className='table'>
-        <div className='TitleTable'>
+        <td className='TitleTable'>
         <thead>
           <tr>
             <th>ID</th>
@@ -90,8 +90,8 @@ const WorkersList = () => {
             <th>Delete</th>
           </tr>
         </thead>
-        </div>
-        <div className='contentTable'>
+        </td>
+        <td className='contentTable'>
         <tbody className='contentTable'>
           {workers.map(worker => (
             <tr key={worker.id}>
@@ -107,7 +107,7 @@ const WorkersList = () => {
             </tr>
           ))}
         </tbody>
-        </div>
+        </td>
       </table>
     );
   };

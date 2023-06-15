@@ -139,6 +139,10 @@ ul {
   padding: 0;
 }
 
+.noDelivered{
+  color: black;
+}
+
 .pedidos {
   display: flex;
   flex-direction: column;

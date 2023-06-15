@@ -1,23 +1,32 @@
 import { useState } from 'react';
 import axios from 'axios';
 import MenuVerticalAdmin from './MenuVerticalAdmin';
+import Alert from '../Alert';
 import '../style.css/admin.css';
 
 
 const WorkersAdd = () => {
   const [newWorker, setNewWorker] = useState({ id: '', email: '', password: '', role: '' });
+  const [showAlert, setShowAlert] = useState(false);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setNewWorker({ ...newWorker, [name]: value });
+   // setShowAlert(false); // Ocultar la alerta al escribir en un input
   };
 
   const addWorker = async () => {
     try {
       await axios.post(`http://localhost:8080/users/`, newWorker);
+      setShowAlert(true); // Mostrar la alerta "Ready, added worker" al agregar un trabajador
     } catch (error) {
       console.error('Error adding worker:', error);
     }
+  };
+
+  // Función para ocultar el mensaje de alerta
+  const hideAlert = () => {
+    setShowAlert(false);
   };
 
   return (
@@ -65,8 +74,12 @@ const WorkersAdd = () => {
         </select>
         <button className='add' type="button" onClick={addWorker}>Add</button>
       </form>
+      {showAlert && (
+          <Alert type="success" message="Ready, added worker" onClose={hideAlert} />
+        )}
       </div>
       </div>
+    
     </div>
   );
 };

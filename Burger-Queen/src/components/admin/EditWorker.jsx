@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import ReactModal from 'react-modal';
-import '../style.css/modalWorkers.css'
+import '../style.css/modalWorkers.css';
 
 /* Establecer el elemento de la aplicación, es importante para garantizar que los lectores de pantalla 
 no accedan al contenido principal cuando el modal está abierto. */
@@ -75,7 +75,6 @@ const EditWorker = ({ isOpen, worker, closeModal, updateWorker }) => {
           <option value="chef">Chef</option>
           <option value="waiter">Waiter</option>
         </select>
-        {/* Agrega aquí otros campos del formulario */}
         <button className='update' type="submit">Update</button>
         <button className='cancel' type="button" onClick={handleCancel}>Cancel</button>
       </form>

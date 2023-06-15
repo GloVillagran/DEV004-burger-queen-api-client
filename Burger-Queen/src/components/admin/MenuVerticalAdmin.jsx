@@ -30,10 +30,10 @@ const MenuVerticalAdmin = () => {
           WORKERS
           {workersOpen && (
             <ul>
-              <li>
+              <li className='workersList'>
                 <Link className='workersList' to="/workersList">WorkersList</Link>
               </li>
-              <li>
+              <li className='workersAdd'>
                 <Link className='workersList' to="/workersAdd">WorkersAdd</Link>
               </li>
             </ul>
@@ -43,10 +43,10 @@ const MenuVerticalAdmin = () => {
           PRODUCTS
           {productsOpen && (
             <ul>
-              <li>
+              <li className='productList'>
                 <Link className='productList' to="/productsList">ProductsList</Link>
               </li>
-              <li>
+              <li className= 'productAdd'>
                 <Link className='productAdd' to="/productsAdd">ProductsAdd</Link>
               </li>
             </ul>

@@ -79,8 +79,8 @@ const EditProducts = ({ isOpen, product, closeModal, updateProduct }) => {
        <label className='TYPE'>Type:</label>
        <select className='typeModal' name="type" value={editedData.type} onChange={handleChange}>
           <option value="vacio"></option>
-          <option value="breakfast">Breakfast</option>
-          <option value="lunch">Lunch</option>
+          <option value="Desayuno">Desayuno</option>
+          <option value="Almuerzo">Almuerzo</option>
         </select>
         
         {/* Agrega aquí otros campos del formulario */}

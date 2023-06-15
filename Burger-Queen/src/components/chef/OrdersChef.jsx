@@ -2,12 +2,15 @@ import { useState, useContext, useEffect } from 'react';
 import axios from 'axios';
 import MenuVerticalChef from './MenuVerticalChef';
 import { AuthContext } from '../../AuthContext';
+import Alert from '../Alert';
 import '../style.css/chef.css';
 
 function OrdersChef() {
   const { token } = useContext(AuthContext);
   const [pendingOrders, setPendingOrders] = useState([]);
   const [deliveredOrders, setDeliveredOrders] = useState([]);
+  const [showAlert, setShowAlert] = useState(false);
+
 
   // Controla qué sección de pedidos se muestra en función del botón presionado
   const [displayedSection, setDisplayedSection] = useState(null);
@@ -78,6 +81,7 @@ function OrdersChef() {
       // Volver a obtener los pedidos pendientes y listos después de enviar un pedido
       fetchPendingOrders();
       fetchDeliveredOrders();
+      setShowAlert(true);
     } catch (error) {
       console.error('Error al enviar el pedido:', error);
     }
@@ -113,6 +117,12 @@ function OrdersChef() {
   const handleOrderDelivered = () => {
     fetchDeliveredOrders();
     setDisplayedSection('delivered');
+    setShowAlert(false); // Agrega esta línea para ocultar el mensaje de alerta
+  };
+
+  // Función para ocultar el mensaje de alerta
+  const hideAlert = () => {
+    setShowAlert(false);
   };
 
   return (
@@ -194,6 +204,9 @@ function OrdersChef() {
               );
             })}
           </ul>
+        )}
+        {showAlert && (
+          <Alert type="success" message="Order List" onClose={hideAlert} />
         )}
       </div>
     </div>

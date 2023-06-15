@@ -80,7 +80,7 @@ const ProductsList = () => {
 
     return (
       <table className='tableProducts'>
-        <div className='TitleProducts'>
+        <td className='TitleProducts'>
         <thead>
           <tr>
             <th>Name</th>
@@ -91,8 +91,8 @@ const ProductsList = () => {
             <th>Delete</th>
           </tr>
         </thead>
-        </div>
-        <div className='contentTableProduct'>
+        </td>
+        <td className='contentTableProduct'>
         <tbody >
           {products.map(product => (
             <tr key={product.id}>
@@ -111,7 +111,7 @@ const ProductsList = () => {
             </tr>
           ))}
         </tbody>
-        </div>
+        </td>
       </table>
     );
   };
