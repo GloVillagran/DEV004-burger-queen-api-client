@@ -20,37 +20,36 @@ li {
   border-bottom: 1px solid #ddd;
 }
 
-.home {
-  color: white;
+li:hover {
+  background-color:antiquewhite;
+  /* Color de fondo al pasar el mouse */
 }
 
-.orders {
+a {
   color: white;
+  text-decoration: none;
 }
 
-.menu {
-  color: white;
-}
-
-.menu-vertical li a:hover {
-  background-color: black;
+a:hover {
+  color: red;
   /* Color de texto al pasar el mouse */
 }
 
 .logout:hover {
-  background-color: black;
-  /* Color de texto al pasar el mouse */
+  background-color:antiquewhite
+  /* Color de fondo al pasar el mouse */
 }
-
 
 .workersList,
 .workersAdd,
 .productList,
 .productAdd {
   color: black;
-  
 }
 
+.subMenu {
+  background-color:#BB6748;
+}
 
 .menu-vertical-delivered {
   flex: 0.3;

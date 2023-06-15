@@ -45,7 +45,7 @@ function Waiter() {
     }
   }, [token, user]);
 
-  function handleClick(e, menu) {
+  function clickButtons(e, menu) {
     //Cancela el evento si este es cancelable, sin detener el resto del funcionamiento del evento.
     e.preventDefault();
     setSelectedMenu(menu);
@@ -170,13 +170,13 @@ function Waiter() {
         /> 
       <div className='options'>
         <button
-          onClick={(e) => handleClick(e, 'Desayuno')}
+          onClick={(e) => clickButtons(e, 'Desayuno')}
           className={`breakfast ${selectedMenu === 'Desayuno' ? 'active' : ''}`}
         >
           Breakfast
         </button>
         <button
-          onClick={(e) => handleClick(e, 'Almuerzo')}
+          onClick={(e) => clickButtons(e, 'Almuerzo')}
           className={`lunch ${selectedMenu === 'Almuerzo' ? 'active' : ''}`}
         >
           Lunch

@@ -101,7 +101,7 @@ margin-top: 1em;
 
 .productsChef{
   background-color: #6D2B02;
-  border-radius: 10px;
+  border-radius: 5px;
 
 }
 /* Estilos para el botón Send */
@@ -113,6 +113,7 @@ margin-top: 1em;
   margin-right: 5px;
   cursor: pointer;
   width: 35%;
+  border-radius: 5px;
 }
 
 /* Estilos para el botón Cancel */
@@ -123,6 +124,7 @@ margin-top: 1em;
   padding: 5px 10px;
   cursor: pointer;
   width: 35%;
+  border-radius: 5px;
 }
 
 

@@ -29,7 +29,7 @@ const MenuVerticalAdmin = () => {
         <li onClick={toggleWorkers}>
           WORKERS
           {workersOpen && (
-            <ul>
+            <ul className='subMenu'>
               <li className='workersList'>
                 <Link className='workersList' to="/workersList">WorkersList</Link>
               </li>
@@ -42,7 +42,7 @@ const MenuVerticalAdmin = () => {
         <li onClick={toggleProducts}>
           PRODUCTS
           {productsOpen && (
-            <ul>
+            <ul className='subMenu'>
               <li className='productList'>
                 <Link className='productList' to="/productsList">ProductsList</Link>
               </li>

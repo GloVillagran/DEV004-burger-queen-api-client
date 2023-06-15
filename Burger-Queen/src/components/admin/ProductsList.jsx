@@ -1,8 +1,9 @@
-import React, { useEffect, useState, useContext } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
 import MenuVerticalAdmin from './MenuVerticalAdmin';
 import { AuthContext } from '../../AuthContext';
 import EditProducts from './EditProducts';
+import '../style.css/tables.css'
 
 const ProductsList = () => {
   const { token } = useContext(AuthContext);
@@ -79,8 +80,7 @@ const ProductsList = () => {
     }
 
     return (
-      <table className='tableProducts'>
-        <td className='TitleProducts'>
+      <table className='table'>
         <thead>
           <tr>
             <th>Name</th>
@@ -91,8 +91,6 @@ const ProductsList = () => {
             <th>Delete</th>
           </tr>
         </thead>
-        </td>
-        <td className='contentTableProduct'>
         <tbody >
           {products.map(product => (
             <tr key={product.id}>
@@ -106,12 +104,11 @@ const ProductsList = () => {
                 <button className='edit' onClick={() => editProduct(product.id)}>Edit</button>
               </td>
               <td>
-                <button className='delete' onClick={() => deleteProduct(product.id)}>Delete</button>
+                <button className='deleteProduct' onClick={() => deleteProduct(product.id)}>Delete</button>
               </td>
             </tr>
           ))}
         </tbody>
-        </td>
       </table>
     );
   };
@@ -120,7 +117,7 @@ const ProductsList = () => {
     <div className='ProductList'>
       <MenuVerticalAdmin />
       <div className='contentListProduct'>
-      <h3>LIST PRODUCTS</h3>
+      <h3 className='listProducts'>LIST PRODUCTS</h3>
       {renderProducts()}
       <EditProducts
         isOpen={isModalOpen}

@@ -10,8 +10,7 @@ function OrdersChef() {
   const [pendingOrders, setPendingOrders] = useState([]);
   const [deliveredOrders, setDeliveredOrders] = useState([]);
   const [showAlert, setShowAlert] = useState(false);
-
-
+  
   // Controla qué sección de pedidos se muestra en función del botón presionado
   const [displayedSection, setDisplayedSection] = useState(null);
 
@@ -118,7 +117,9 @@ function OrdersChef() {
     fetchDeliveredOrders();
     setDisplayedSection('delivered');
     setShowAlert(false); // Agrega esta línea para ocultar el mensaje de alerta
+   
   };
+  
 
   // Función para ocultar el mensaje de alerta
   const hideAlert = () => {
@@ -156,14 +157,14 @@ function OrdersChef() {
                       </li>
                     ))}
                   </ul>
-                </div> 
+                </div>
                 <div className='chefButtons' >
-                <button className="buttonSend" data-testid="send" onClick={() => handleSendOrder(order.id)}>
-                  Send
-                </button>
-                <button className="buttonCancel" onClick={() => handleCancelOrder(order.id)}>
-                  Cancel
-                </button>
+                  <button className="buttonSend" data-testid="send" onClick={() => handleSendOrder(order.id)}>
+                    Send
+                  </button>
+                  <button className="buttonCancel" onClick={() => handleCancelOrder(order.id)}>
+                    Cancel
+                  </button>
                 </div>
               </li>
             ))}
@@ -178,29 +179,29 @@ function OrdersChef() {
               const formattedDateTime = new Date(order.dateProcessed).toLocaleString();
 
               return (
-<li className="pedidosPending" key={order.id}>
-                <div className='datosClient'>
-                  <h4 >Order ID: {order.id} Client: {order.client}</h4>
-                </div>
-                <div>
-                  <span className="order-label">Date Entry:</span> {order.dateEntry}
-                </div>
-                <div className='date'>
+                <li className="pedidosPending" key={order.id}>
+                  <div className='datosClient'>
+                    <h4 >Order ID: {order.id} Client: {order.client}</h4>
+                  </div>
+                  <div>
+                    <span className="order-label">Date Entry:</span> {order.dateEntry}
+                  </div>
+                  <div className='date'>
                     <p >Date Entry:</p> {formattedDateEntry}
                     <p >Date/Time Ready:</p> {formattedDateTime}
                   </div>
-                <div className='productsChef'>
-                  <ul>
-                    {order.products.map((item, index) => (
-                      <li key={index}>
-                        {item.product.name} ({item.qty})
-                      </li>
-                    ))}
-                  </ul>
-                </div> 
-              </li>
+                  <div className='productsChef'>
+                    <ul className='productsChef'>
+                      {order.products.map((item, index) => (
+                        <li key={index}>
+                          {item.product.name} ({item.qty})
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </li>
 
-               
+
               );
             })}
           </ul>

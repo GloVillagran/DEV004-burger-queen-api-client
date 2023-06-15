@@ -44,14 +44,14 @@ const EditWorker = ({ isOpen, worker, closeModal, updateWorker }) => {
   return (
     <ReactModal isOpen={isOpen} onRequestClose={closeModal} >
       <form className='formModal' onSubmit={(e) => handleSubmit(e, editedData.id)}>
-        <label className='ID'>Id:</label>
+       {/*  <label className='ID'>Id:</label>
         <input
           className='idModal'
           type="text"
           name="id"
           value={editedData.id}
           onChange={handleChange}
-        />
+        /> */}
         <label className='EMAIL'>Email:</label>
         <input
           className='emailModal'
@@ -59,7 +59,7 @@ const EditWorker = ({ isOpen, worker, closeModal, updateWorker }) => {
           name="email"
           value={editedData.email}
           onChange={handleChange}
-        />
+        /> 
         <label className='PASSWORD'>Password:</label>
         <input
           className='passwordModal'
@@ -75,8 +75,10 @@ const EditWorker = ({ isOpen, worker, closeModal, updateWorker }) => {
           <option value="chef">Chef</option>
           <option value="waiter">Waiter</option>
         </select>
-        <button className='update' type="submit">Update</button>
+        <div className='buttonModalWorkers'>
+        <button className='update' type="submit">Update</button> <br />
         <button className='cancel' type="button" onClick={handleCancel}>Cancel</button>
+        </div>
       </form>
     </ReactModal>
   );

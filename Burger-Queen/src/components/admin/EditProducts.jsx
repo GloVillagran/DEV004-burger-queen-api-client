@@ -44,14 +44,14 @@ const EditProducts = ({ isOpen, product, closeModal, updateProduct }) => {
   return (
     <ReactModal isOpen={isOpen} onRequestClose={closeModal}>
       <form className='formModal' onSubmit={(e) => handleSubmit(e, editedData.id)}>
-        <label className='ID'>Id:</label>
+        {/* <label className='ID'>Id:</label>
         <input
           className='idModal'
           type="text"
           name="id"
           value={editedData.id}
           onChange={handleChange}
-        />
+        /> */}
         <label className='NAME' >Name:</label>
         <input
         className='nameModal'

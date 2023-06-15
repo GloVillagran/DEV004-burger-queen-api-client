@@ -55,24 +55,20 @@ const ProductsAdd = () => {
 
 
   return (
-    <div className="form-containerProducts">
+    <div className="form-container">
       <MenuVerticalAdmin />
-      <div className='contentAddProduct'>
-      <h2>Add Products</h2>
-      <div className='formAddProduct'>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Name:
+      <div className='contentAdd'>
+        <div className='caja' >
+      <h2 className='titleAdd'>Add Products</h2>
+      <form className='formAdd' onSubmit={handleSubmit}>
           <input
           className='nameProducts'
             type="text"
+            placeholder="Name"
             value={productName}
             onChange={(e) => setProductName(e.target.value)}
             required
-          />
-        </label>
-        <label>
-          Type: 
+          /> <br />
         <select
           className='type'
           name="type"
@@ -84,32 +80,27 @@ const ProductsAdd = () => {
           <option value="select">Select type</option>
           <option value="desayuno">Desayuno</option>
           <option value="almuerzo">Almuerzo</option>
-        </select>
-        </label>
-        <label>
-          Price: $
+        </select> <br />
           <input
           className='price'
             type="number"
+            placeholder="Price: $"
             value={productPrice}
             onChange={(e) => setProductPrice(e.target.value)}
             required
-          />
-        </label>
-        <label>
-          Image URL:
+          /> <br />
           <input
           className='image'
             type="text"
+            placeholder='Image URL:'
             value={image}
             onChange={(e) => setImageUrl(e.target.value)}
             onBlur={handleImageLoad}
             required
-          />
-        </label>
+          /> <br />
         <label>
           {previewImage && <img src={previewImage} alt="Imagen previa" style={{ maxWidth: '200px' }} />}
-        </label>
+        </label> <br />
         <button className='addproduct' type="submit">Add</button>
       </form>
       {showAlert && (

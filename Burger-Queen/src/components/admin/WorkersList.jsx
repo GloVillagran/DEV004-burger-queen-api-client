@@ -1,8 +1,9 @@
-import React, { useEffect, useState, useContext } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
 import { AuthContext } from '../../AuthContext';
 import MenuVerticalAdmin from './MenuVerticalAdmin';
 import EditWorker from './EditWorker';
+import '../style.css/tables.css'
 
 const WorkersList = () => {
   const { token } = useContext(AuthContext);
@@ -80,35 +81,31 @@ const WorkersList = () => {
 
     return (
       <table className='table'>
-        <td className='TitleTable'>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Email</th>
-            <th>Rol</th>
-            <th>Edit</th>
-            <th>Delete</th>
+      <thead>
+        <tr className='encabezado'>
+          {/* <th>ID</th> */}
+          <th>Email</th>
+          <th>Rol</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        {workers.map(worker => (
+          <tr key={worker.id}>
+            {/* <td>{worker.id}</td> */}
+            <td>{worker.email}</td>
+            <td>{worker.role}</td>
+            <td>
+              <button className='edit' onClick={() => editWorker(worker)}>Edit</button>
+            </td>
+            <td>
+              <button className='delete' onClick={() => deleteWorker(worker.id)}>Delete</button>
+            </td>
           </tr>
-        </thead>
-        </td>
-        <td className='contentTable'>
-        <tbody className='contentTable'>
-          {workers.map(worker => (
-            <tr key={worker.id}>
-              <td>{worker.id}</td>
-              <td>{worker.email}</td>
-              <td>{worker.role}</td>
-              <td>
-                <button className='edit' onClick={() => editWorker(worker)}>Edit</button>
-              </td>
-              <td>
-                <button className='delete' onClick={() => deleteWorker(worker.id)}>Delete</button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-        </td>
-      </table>
+        ))}
+      </tbody>
+    </table>
     );
   };
 
@@ -116,7 +113,7 @@ const WorkersList = () => {
     <div className='WorkerList'>
       <MenuVerticalAdmin />
       <div className='contentList'>
-      <h3>LIST WORKERS</h3>
+      <h3 className='list'>LIST WORKERS</h3>
       {renderWorkers()}
       
       

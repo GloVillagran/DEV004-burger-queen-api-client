@@ -33,18 +33,17 @@ const WorkersAdd = () => {
     <div className="form-container">
       <MenuVerticalAdmin />
       <div className='contentAdd'>
-      <h2>Add Workers</h2>
-      
-      <div className='formAdd'>
-      <form>
-        <input
+      <div className='caja' >
+      <h2 className='titleAdd'>Add Workers</h2>
+      <form className='formAdd'>
+        {/* <input
           className='id'
           type="text"
           name="id"
           placeholder="ID"
           value={newWorker.id}
           onChange={handleInputChange}
-        /> <br />
+        /> <br /> */}
         <input
         className='email'
           type="text"
@@ -71,7 +70,7 @@ const WorkersAdd = () => {
           <option value="admin">Admin</option>
           <option value="waiter">Waiter</option>
           <option value="chef">Chef</option>
-        </select>
+        </select> <br />
         <button className='add' type="button" onClick={addWorker}>Add</button>
       </form>
       {showAlert && (
