@@ -25,10 +25,10 @@ const Login = () => {
           break;
         case 'chef': navigate('/chef')
           break;
-        default: null
+        default: setErrorMessage('Error login');
       }
     }
-  })
+  }, [user, navigate])
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);

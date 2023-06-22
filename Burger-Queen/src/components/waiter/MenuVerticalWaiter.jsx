@@ -11,10 +11,7 @@ const MenuVertical = () => {
   // Función para cerrar sesión y realizar cualquier otra acción necesaria
   const handleLogout = () => {
     // Realiza aquí cualquier acción necesaria al cerrar sesión
-
     logout(); // Llama a la función logout del contexto
-
-
     // Redirigir a la página de inicio (Home)
     navigate('/');
   };

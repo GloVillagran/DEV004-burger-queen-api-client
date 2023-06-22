@@ -2,13 +2,9 @@ import { render, fireEvent, screen, waitFor } from '@testing-library/react';
 import Waiter from '../../src/components/waiter/Waiter';
 import { AuthContext } from '../../src/AuthContext'; //El contexto de autenticación 
 import axios from 'axios';
-import CartSummary from '../../src/components/waiter/CartSummary';
+import "@testing-library/jest-dom";
+import { BrowserRouter } from "react-router-dom";
 
-jest.mock('react-router-dom', () => ({
-  Link: 'Link',
-  Route: ({ children, path }) => children({ match: path === '/somewhere' }),
-  useNavigate: jest.fn(),
-}))
 
 jest.mock('../../src/components/style.css/Waiter.css', () => ({
 
@@ -16,170 +12,219 @@ jest.mock('../../src/components/style.css/Waiter.css', () => ({
 jest.mock('../../src/components/style.css/MenuVerticalWaiter.css', () => ({
 
 }));
+jest.mock('../../src/components/style.css/alert.css', () => ({
+
+}));
 jest.mock('axios'); // Mockear el módulo axios para simular las peticiones
+
+beforeEach(() => {
+  jest.clearAllMocks(); // or jest.resetAllMocks();
+});
 
 
 describe('Waiter component', () => {
-  test('renders Waiter component', async () => {
-    const waiter = jest.fn();
-    const expectedData = {
-      data: {
-          accessToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imdsb3JpYUBnbWFpbC5jb20iLCJpYXQiOjE2ODYwMTc5MDgsImV4cCI6MTY4NjAyMTUwOCwic3ViIjoiMyJ9.36LuwIClqChPtpjxH7wI-ogV86IBANT4JKHhghb23Gk',
-          user: { email: 'gloria@gmail.com', role: 'waiter', id: 3 }
-      }
-  }
-  axios.post.mockResolvedValue(expectedData);
+
+  test('render breakfast products', async () => {
+    const expectedProducts = [
+      { id: 1, name: 'Product 1', price: 10, type: 'Desayuno' },
+      { id: 2, name: 'Product 2', price: 20, type: 'Desayuno' },
+      { id: 3, name: 'Product 3', price: 30, type: 'Desayuno' }
+    ];
+
+    const expectedUser = {
+      email: 'lucas@gmail.com',
+      role: 'waiter',
+      id: 6
+    };
+
+    axios.get.mockResolvedValue({ data: expectedProducts });
 
     render(
-      <AuthContext.Provider value={{ waiter }}>
+      <AuthContext.Provider value={{ token: 'dummy-token', user: expectedUser }}>
+        <BrowserRouter>
         <Waiter />
+        </BrowserRouter>
       </AuthContext.Provider>
     );
+    fireEvent.change(screen.getByPlaceholderText('Client name'), { target: { value: 'pedro' } });
+    fireEvent.click(screen.getByText('Breakfast'));
 
     // Asegurarse de que se realiza la petición GET correctamente
-    await waitFor(() => expect(axios.get).toHaveBeenCalledTimes(1));
+    await waitFor(() => {
+      expect(axios.get).toHaveBeenCalledTimes(1);
+      const firstProduct = screen.getByText('Product 1');
+      const secondProduct = screen.getByText('Product 2');
+      const thirdProduct = screen.getByText('Product 3');
+
+      expect(firstProduct).toBeInTheDocument();
+      expect(secondProduct).toBeInTheDocument();
+      expect(thirdProduct).toBeInTheDocument();
+    });
+
+
   });
-});
 
+  test('render lunch products', async () => {
+    const expectedProducts = [
+      { id: 1, name: 'Product 1', price: 10, type: 'Almuerzo' },
+      { id: 2, name: 'Product 2', price: 20, type: 'Almuerzo' },
+      { id: 3, name: 'Product 3', price: 30, type: 'Almuerzo' }
+    ];
 
-test('selects menu on button click', async () => {
-  // Mockear el valor del contexto AuthContext
-  const mockAuthContextValue = {
-    token: 'mock-token',
-    user: { id: 1 }
-  };
+    const expectedUser = {
+      email: 'lucas@gmail.com',
+      role: 'waiter',
+      id: 6
+    };
 
-  axios.get.mockResolvedValue({ data: [] }); // Mockear la respuesta de la petición GET
+    axios.get.mockResolvedValue({ data: expectedProducts });
 
     render(
-      <AuthContext.Provider value={mockAuthContextValue}>
+      <AuthContext.Provider value={{ token: 'dummy-token', user: expectedUser }}>
+        <BrowserRouter>
         <Waiter />
+        </BrowserRouter>
       </AuthContext.Provider>
     );
-  // Renderizar el componente Waiter y capturar el resultado en una variable
- 
-  // Asegurarse de que se realiza la petición GET correctamente
-  await waitFor(() => expect(axios.get).toHaveBeenCalledTimes(1));
 
-  fireEvent.click(screen.getByText('Breakfast'));
-  // Realizar las afirmaciones necesarias
-  /* expect(screen.getByText('Options')).toBeInTheDocument();
-  expect(screen.queryByText('Lunch')).not.toBeInTheDocument(); */
-});
+    fireEvent.click(screen.getByText('Lunch'));
 
+    // Asegurarse de que se realiza la petición GET correctamente
+    await waitFor(() => {
+      expect(axios.get).toHaveBeenCalledTimes(1);
+      const firstProduct = screen.getByText('Product 1');
+      const secondProduct = screen.getByText('Product 2');
+      const thirdProduct = screen.getByText('Product 3');
 
-test('should add a product to the cart', () => {
-  const mockAuthContextValue = {
-    token: 'mock-token',
-    user: { id: 1 }
-  };
-
-  axios.get.mockResolvedValue({ data: [] });
-
-
-  render(
-    <AuthContext.Provider value={mockAuthContextValue}>
-      <Waiter />
-    </AuthContext.Provider>
-  );
-
-  waitFor(() => {
-    const addToCartButton = screen.getByText('Add to Cart');
-    // Realiza las aserciones aquí
-
-    // Simula un clic en el botón "Add to Cart"
-    fireEvent.click(addToCartButton);
-    // Verifica que el producto se haya agregado al carrito
-    const cartItems = screen.getAllByTestId('cart-item');
-    expect(cartItems).toHaveLength(1); // Verifica que haya un solo elemento en el carrito
-
-    const productName = screen.getByText('Product Name');
-    const productPrice = screen.getByText('$10.99');
-
-    expect(productName).toBeInTheDocument();
-    expect(productPrice).toBeInTheDocument();
-
+      expect(firstProduct).toBeInTheDocument();
+      expect(secondProduct).toBeInTheDocument();
+      expect(thirdProduct).toBeInTheDocument();
+    });
   });
 
-});
-
-test('should calculate the total price correctly', () => {
-  const mockAuthContextValue = {
-    token: 'mock-token',
-    user: { id: 1 }
-  };
-
-  axios.get.mockResolvedValue({ data: [] });
-
-
-  render(
-    <AuthContext.Provider value={mockAuthContextValue}>
-      <Waiter />
-    </AuthContext.Provider>
-  );
-
-    // Encuentra el botón "Add to Cart" y simula varios clics para agregar productos al carrito
-    waitFor(() => {
-      const addToCartButton = screen.getByText('Add to Cart');
-    fireEvent.click(addToCartButton);
-    fireEvent.click(addToCartButton);
-    fireEvent.click(addToCartButton);
-
-    // Encuentra los botones para aumentar y disminuir la cantidad del producto
-    const increaseButton = screen.getByText('+');
-    const decreaseButton = screen.getByText('-');
-
-    // Simula clics en los botones para aumentar y disminuir la cantidad del producto
-    fireEvent.click(increaseButton);
-    fireEvent.click(decreaseButton);
-
-    // Verifica que el total del precio se haya calculado correctamente
-    const totalElement = screen.getByTestId('total-price');
-    expect(totalElement).toHaveTextContent('$33.00'); // Reemplaza con el total esperado después de los cálculos
-
-    
-  // verificar que los precios individuales y las cantidades sean correctos
-    const priceElement = screen.getByTestId('product-price');
-    const quantityElement = screen.getByTestId('product-quantity');
-
-    expect(priceElement).toHaveTextContent('$11.00'); // Reemplaza con el precio individual esperado
-    expect(quantityElement).toHaveTextContent('2'); // Reemplaza con la cantidad esperada
-  });
-
-});
-
-// test componente CartSummar
-describe('CartSummary', () => {
-  test('should call sendOrder when "Send Order" button is clicked', async () => {
-    // Arrange
-    const cart = [
-      { id: 1, name: 'Product 1', price: 10, quantity: 2 },
-      { id: 2, name: 'Product 2', price: 15, quantity: 1 },
+  test('should add product to cart', async () => {
+    const expectedProducts = [
+      { id: 1, name: 'Product 1', price: 10, type: 'Almuerzo' }
     ];
-    const removeFromCart = jest.fn();
-    const increaseQuantity = jest.fn();
-    const decreaseQuantity = jest.fn();
-    const clientName = 'John Doe';
-    const sendOrder = jest.fn();
-    const backToMenu = jest.fn();
+
+    const expectedUser = {
+      email: 'lucas@gmail.com',
+      role: 'waiter',
+      id: 6
+    };
+
+    axios.get.mockResolvedValue({ data: expectedProducts });
 
     render(
-      <CartSummary
-        cart={cart}
-        removeFromCart={removeFromCart}
-        increaseQuantity={increaseQuantity}
-        decreaseQuantity={decreaseQuantity}
-        clientName={clientName}
-        sendOrder={sendOrder}
-        backToMenu={backToMenu}
-      />
+      <AuthContext.Provider value={{ token: 'dummy-token', user: expectedUser }}>
+        <BrowserRouter>
+        <Waiter />
+        </BrowserRouter>
+      </AuthContext.Provider>
     );
 
-    // Act
-    fireEvent.click(await waitFor(() => screen.getByRole('button', { name: /Send Order/i })));
-  
+    fireEvent.click(screen.getByText('Lunch'));
 
-    // Assert
-    expect(sendOrder).toHaveBeenCalledTimes(1);
+    await waitFor(() => {
+      //add two times
+      fireEvent.click(screen.getByText('Add to Cart'));
+      fireEvent.click(screen.getByText('Add to Cart'));
+    });
+
+    const sendOrder = screen.getByText("Send Order: $20")
+
+    fireEvent.click(screen.getByText('+'));
+    fireEvent.click(screen.getByText('+'));
+
+    await waitFor(() => {
+      expect(screen.getByText("Send Order: $40")).toBeInTheDocument();
+    })
+
+    fireEvent.click(screen.getByText('-'));
+
+    await waitFor(() => {
+      expect(screen.getByText("Send Order: $30")).toBeInTheDocument();
+    })
+
+    axios.post.mockResolvedValue({});
+    fireEvent.click(sendOrder);
+
+    //volvemos al menu todo vacio
+    fireEvent.click(screen.getByText('Back to Menu'))
+
+    await waitFor(() => {
+      expect(screen.getByText("No items in the cart.")).toBeInTheDocument();
+    })
+  })
+
+
+  test('should remove product to cart', async () => {
+    const expectedProducts = [
+      { id: 1, name: 'Product 1', price: 10, type: 'Almuerzo' }
+    ];
+
+    const expectedUser = {
+      email: 'lucas@gmail.com',
+      role: 'waiter',
+      id: 6
+    };
+
+    axios.get.mockResolvedValue({ data: expectedProducts });
+
+    render(
+      <AuthContext.Provider value={{ token: 'dummy-token', user: expectedUser }}>
+        <BrowserRouter>
+        <Waiter />
+        </BrowserRouter>
+      </AuthContext.Provider>
+    );
+
+    fireEvent.click(screen.getByText('Lunch'));
+
+    await waitFor(() => {
+      //add two times
+      fireEvent.click(screen.getByText('Add to Cart'));
+    });
+
+    expect(screen.getByText("Send Order: $10")).toBeInTheDocument();
+    fireEvent.click(screen.getByText('Remove'));
+
+    await waitFor(() => {
+      expect(screen.getByText("No items in the cart.")).toBeInTheDocument();
+    })
+
+  })
+
+  test('render logout', async () => {
+   
+    const logout = jest.fn()
+
+    const expectedUser = {
+      email: 'lucas@gmail.com',
+      role: 'waiter',
+      id: 6
+    };
+
+
+    render(
+      <AuthContext.Provider value={{ token: 'dummy-token', user: expectedUser, logout }}>
+        <BrowserRouter>
+        <Waiter />
+        </BrowserRouter>
+      </AuthContext.Provider>
+    );
+    fireEvent.click(screen.getByText('LOGOUT'));
+
+    // Asegurarse de que se realiza la petición GET correctamente
+    await waitFor(() => {
+      expect(logout).toHaveBeenCalledTimes(1)
+    });
+
+
   });
+
 });
+
+
+
+

@@ -3,6 +3,7 @@ import axios from 'axios';
 import { AuthContext } from '../../AuthContext';
 import MenuVerticalAdmin from './MenuVerticalAdmin';
 import EditWorker from './EditWorker';
+import Alert from '../Alert';
 import '../style.css/tables.css'
 
 const WorkersList = () => {
@@ -10,6 +11,7 @@ const WorkersList = () => {
   const [workers, setWorkers] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editedWorker, setEditedWorker] = useState(null);
+  const [showAlertDelete, setShowAlertDelete] = useState(false);
 
   useEffect(() => {
     fetchWorkers();
@@ -69,10 +71,16 @@ const WorkersList = () => {
         }
       });
       fetchWorkers(response.data);
+      setShowAlertDelete(true);
     } catch (error) {
       console.error('Error deleting worker:', error);
     }
   };
+
+    // Función para ocultar el mensaje de alerta
+    const hideAlert = () => {
+      setShowAlertDelete(false);
+    };
 
   const renderWorkers = () => {
     if (workers.length === 0) {
@@ -97,7 +105,7 @@ const WorkersList = () => {
             <td>{worker.email}</td>
             <td>{worker.role}</td>
             <td>
-              <button className='edit' onClick={() => editWorker(worker)}>Edit</button>
+              <button className='edit'  onClick={() => editWorker(worker)}>Edit</button>
             </td>
             <td>
               <button className='delete' onClick={() => deleteWorker(worker.id)}>Delete</button>
@@ -107,6 +115,7 @@ const WorkersList = () => {
       </tbody>
     </table>
     );
+    
   };
 
   return (
@@ -116,7 +125,9 @@ const WorkersList = () => {
       <h3 className='list'>LIST WORKERS</h3>
       {renderWorkers()}
       
-      
+      {showAlertDelete && (
+        <Alert type="success" message="Deleted worker" onClose={hideAlert} />
+      )},
       <EditWorker
         isOpen={isModalOpen}
         worker={editedWorker}
@@ -124,6 +135,7 @@ const WorkersList = () => {
         updateWorker={updateWorker}
       />
       </div>
+     
     </div>
   );
 };

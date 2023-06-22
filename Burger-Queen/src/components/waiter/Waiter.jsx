@@ -30,7 +30,7 @@ function Waiter() {
             Authorization: `Bearer ${token}` // Reemplaza con tu token de autenticación
           }
         });
-        console.log(response.data); // Verificar los datos de la respuesta en la consola
+        
         setProducts(response.data);
       } catch (error) {
         console.error(error);
@@ -140,7 +140,7 @@ function Waiter() {
           Authorization: `Bearer ${token}` // Reemplaza con tu token de autenticación
         }
       });
-      console.log(response.data); // Verifica la respuesta del servidor en la consola
+      //console.log(response.data); // Verifica la respuesta del servidor en la consola
 
       // Agregar el nuevo pedido a la lista de pedidos pendientes
   setPendingOrders([...pendingOrders, response.data]);

@@ -10,6 +10,7 @@ function OrdersChef() {
   const [pendingOrders, setPendingOrders] = useState([]);
   const [deliveredOrders, setDeliveredOrders] = useState([]);
   const [showAlert, setShowAlert] = useState(false);
+  const [showAlertCancel, setShowAlertCancel] = useState(false);
   
   // Controla qué sección de pedidos se muestra en función del botón presionado
   const [displayedSection, setDisplayedSection] = useState(null);
@@ -27,14 +28,14 @@ function OrdersChef() {
 
       if (response && response.data) {
         setPendingOrders(response.data);
-        console.log(response.data)
+       
 
 
       } else {
         setPendingOrders([]);
       }
     } catch (error) {
-      console.error('Error al obtener los pedidos pendientes:', error);
+      console.error('Error getting pending orders:', error);
     }
   };
 
@@ -53,7 +54,7 @@ function OrdersChef() {
         setDeliveredOrders([]);
       }
     } catch (error) {
-      console.error('Error al obtener los pedidos entregados:', error);
+      console.error('Error getting orders delivered:', error);
     }
   };
 
@@ -82,7 +83,7 @@ function OrdersChef() {
       fetchDeliveredOrders();
       setShowAlert(true);
     } catch (error) {
-      console.error('Error al enviar el pedido:', error);
+      console.error('Error sending the order:', error);
     }
   };
 
@@ -97,6 +98,7 @@ function OrdersChef() {
 
       // Volver a obtener los pedidos pendientes después de cancelar un pedido
       fetchPendingOrders();
+      setShowAlertCancel(true);
     } catch (error) {
       console.error('Error al cancelar el pedido:', error);
     }
@@ -117,7 +119,7 @@ function OrdersChef() {
     fetchDeliveredOrders();
     setDisplayedSection('delivered');
     setShowAlert(false); // Agrega esta línea para ocultar el mensaje de alerta
-   
+    setShowAlertCancel(false);
   };
   
 
@@ -147,11 +149,11 @@ function OrdersChef() {
                   <h4 >Order ID: {order.id} Client: {order.client}</h4>
                 </div>
                 <div>
-                  <span className="order-label">Date Entry:</span> {order.dateEntry}
+                  <span className="order-label">Date of admission:</span> {order.dateEntry}
                 </div>
                 <div className='productsChef'>
                   <ul>
-                    {order.products.map((item, index) => (
+                    {order.products?.map((item, index) => (
                       <li key={index}>
                         {item.product.name} ({item.qty})
                       </li>
@@ -184,11 +186,11 @@ function OrdersChef() {
                     <h4 >Order ID: {order.id} Client: {order.client}</h4>
                   </div>
                   <div>
-                    <span className="order-label">Date Entry:</span> {order.dateEntry}
+                    <span className="order-label">Date of admission:</span> {order.dateEntry}
                   </div>
                   <div className='date'>
-                    <p >Date Entry:</p> {formattedDateEntry}
-                    <p >Date/Time Ready:</p> {formattedDateTime}
+                    <p >Date of admission:</p> {formattedDateEntry}
+                    <p >Departure date:</p> {formattedDateTime}
                   </div>
                   <div className='productsChef'>
                     <ul className='productsChef'>
@@ -207,7 +209,10 @@ function OrdersChef() {
           </ul>
         )}
         {showAlert && (
-          <Alert type="success" message="Order List" onClose={hideAlert} />
+          <Alert type="success" message="Order Completed" onClose={hideAlert} />
+        )}
+         {showAlertCancel && (
+          <Alert type="success" message="Order Cancelled" onClose={hideAlert} />
         )}
       </div>
     </div>

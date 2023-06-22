@@ -12,11 +12,13 @@
   },
   "dependencies": {
     "eslint-plugin-jest": "^27.2.1",
+    "history": "^5.3.0",
     "jest-environment-jsdom": "^29.5.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-modal": "^3.16.1",
-    "react-router": "^6.4.0"
+    "react-router": "^6.13.0",
+    "react-router-dom": "6.10.0"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.22.4",

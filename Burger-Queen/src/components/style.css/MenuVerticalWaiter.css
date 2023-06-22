@@ -20,11 +20,11 @@ li {
   border-bottom: 1px solid #ddd;
 }
 
-li:hover {
+/* li:hover {
   background-color:antiquewhite;
   /* Color de fondo al pasar el mouse */
-}
-
+}*/
+ 
 a {
   color: white;
   text-decoration: none;
@@ -36,15 +36,33 @@ a:hover {
 }
 
 .logout:hover {
-  background-color:antiquewhite
+  color: green;
   /* Color de fondo al pasar el mouse */
+}
+.products:hover{
+  color: green;
+}
+
+.workers:hover{
+  color: green;
 }
 
 .workersList,
 .workersAdd,
 .productList,
 .productAdd {
-  color: black;
+  color: white;
+}
+
+.workersList:hover {
+  color: orange
+}
+.productList:hover {
+  color: orange
+}
+
+.productAdd:hover {
+  color: orange
 }
 
 .subMenu {

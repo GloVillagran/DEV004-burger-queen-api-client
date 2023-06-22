@@ -16,7 +16,6 @@ const [showAlert, setShowAlert] = useState(false);
   /* realizamos la solicitud GET a la API mock y
    la URL adecuada para obtener los pedidos con el estado "delivered". */
   useEffect(() => {
-    console.log("listando")
     const fetchDeliveredOrders = async () => {
       try {
        

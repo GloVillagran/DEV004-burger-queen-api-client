@@ -4,7 +4,7 @@ import '../style.css/modalWorkers.css';
 
 /* Establecer el elemento de la aplicación, es importante para garantizar que los lectores de pantalla 
 no accedan al contenido principal cuando el modal está abierto. */
-ReactModal.setAppElement('#root');
+//ReactModal.setAppElement('#root');
 
 const EditWorker = ({ isOpen, worker, closeModal, updateWorker }) => {
   const [editedData, setEditedData] = useState({
@@ -39,10 +39,8 @@ const EditWorker = ({ isOpen, worker, closeModal, updateWorker }) => {
     closeModal();
   };
 
-
-
   return (
-    <ReactModal isOpen={isOpen} onRequestClose={closeModal} >
+    <ReactModal isOpen={isOpen} onRequestClose={closeModal} data-testid="edit-worker-modal" >
       <form className='formModal' onSubmit={(e) => handleSubmit(e, editedData.id)}>
        {/*  <label className='ID'>Id:</label>
         <input

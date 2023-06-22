@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import '../style.css/MenuVerticalWaiter.css';
-//import { AuthContext } from '../../AuthContext';
+import { AuthContext } from '../../AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
@@ -9,9 +9,13 @@ const MenuVerticalAdmin = () => {
 
   const [workersOpen, setWorkersOpen] = useState(false);
   const [productsOpen, setProductsOpen] = useState(false);
+  const { logout } = useContext(AuthContext); // Obtener la función logout del contexto
+
 
   const handleLogout = () => {
     // Realiza aquí cualquier acción necesaria al cerrar sesión
+    logout(); // Llama a la función logout del contexto
+    // Redirigir a la página de inicio (Home)
     navigate('/');
   };
 
@@ -26,7 +30,7 @@ const MenuVerticalAdmin = () => {
   return (
     <div className="menu-vertical">
       <ul className="cajaMenu">
-        <li onClick={toggleWorkers}>
+        <li className='workers' onClick={toggleWorkers}>
           WORKERS
           {workersOpen && (
             <ul className='subMenu'>
@@ -39,7 +43,7 @@ const MenuVerticalAdmin = () => {
             </ul>
           )}
         </li>
-        <li onClick={toggleProducts}>
+        <li className='products' onClick={toggleProducts}>
           PRODUCTS
           {productsOpen && (
             <ul className='subMenu'>
@@ -52,7 +56,7 @@ const MenuVerticalAdmin = () => {
             </ul>
           )}
         </li>
-        <li onClick={handleLogout}>LOGOUT</li>
+        <li className='logout' onClick={handleLogout}>LOGOUT</li>
       </ul>
     </div>
   );

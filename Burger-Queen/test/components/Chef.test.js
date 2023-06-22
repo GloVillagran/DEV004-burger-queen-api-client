@@ -1,50 +1,158 @@
-
-import { render, waitFor, screen } from '@testing-library/react';
-
-import axios from 'axios';
-import { AuthContext } from '../../src/AuthContext'
+import { render, waitFor, screen, fireEvent } from '@testing-library/react';
 import OrdersChef from '../../src/components/chef/OrdersChef';
-
+import { AuthContext } from '../../src/AuthContext';
+import axios from 'axios';
+import "@testing-library/jest-dom";
+import { BrowserRouter } from "react-router-dom";
 
 jest.mock('react-router-dom');
-// Mock de useNavigate
-jest.mock('react-router-dom', () => ({
-    ...jest.requireActual('react-router-dom'),
-    useNavigate: jest.fn(),
-}));
-
 jest.mock('axios');
-jest.mock('../../src/components/style.css/chef.css', () => ({
+jest.mock('../../src/components/style.css/chef.css', () => ({}));
+jest.mock('../../src/components/style.css/MenuVerticalWaiter.css', () => ({}));
+jest.mock('../../src/components/style.css/alert.css', () => ({}));
 
-}));
-jest.mock('../../src/components/style.css/MenuVerticalWaiter.css', () => ({
+beforeEach(() => {
+    jest.clearAllMocks();
+});
 
-}));
-
-describe('chef component', () => {
-    test('renders chef component', async () => {
-        const chef = jest.fn();
-
-        const expectedData = {
-            data: {
-                accessToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6I…jQifQ._Ocqugiwhcud7HgWvtZWKjd6WRiMjRKIJ5_NlL1zMCY',
-                user: { email: 'hugo@gmail.com', role: 'chef', id: 4 }
+describe('Chef component', () => {
+    test('render Pending Order', async () => {
+        const expectedOrders = [
+            {
+                order: 1,
+                client: 'Pedro',
+                dateEntry: '2022-3-10',
+                status: 'pending',
+                products: [
+                    { product: { name: 'Product 1' }, qty: '1' }
+                ]
             }
-        }
-        axios.post.mockResolvedValue(expectedData);
+        ];
+
+        const expectedUser = {
+            email: 'lucas@gmail.com',
+            role: 'chef',
+            id: 6
+        };
+
+        axios.get.mockResolvedValue({ data: expectedOrders });
 
         render(
-            <AuthContext.Provider value={{ chef }} >
-                <OrdersChef />
+            <AuthContext.Provider value={{ token: 'dummy-token', user: expectedUser }}>
+                <OrdersChef displayedSection="pending" />
             </AuthContext.Provider>
         );
-        // Asegurarse de que se realiza la petición GET correctamente
-        await waitFor(() => expect(axios.get).toHaveBeenCalledTimes(2));
+
+        fireEvent.click(screen.getByText('Pending Order'));
+
+        await waitFor(() => {
+            expect(axios.get).toHaveBeenCalledTimes(2);
+            const firstProduct = screen.getByText('Product 1 (1)');
+            expect(firstProduct).toBeInTheDocument();
+        });
+
+        axios.patch.mockResolvedValue({})
+        axios.get.mockResolvedValue({})
+
+
+        fireEvent.click(screen.getByText('Send'));
+        await waitFor(() => {
+           expect(screen.getByText('Order Completed')).toBeInTheDocument()
+        });
+
+    });
+
+    test('render Delivered Order', async () => {
+        const expectedOrders = [
+            {
+                order: 1,
+                client: 'Pedro',
+                dateEntry: '2022-3-10',
+                status: 'delivered',
+                dateProccesed: '2022-3-10',
+                products: [
+                    { product: { name: 'Product 1' }, qty: '1' }
+                ]
+            }
+        ];
+
+        const expectedUser = {
+            email: 'lucas@gmail.com',
+            role: 'chef',
+            id: 6
+        };
+
+        axios.get.mockResolvedValue({ data: expectedOrders });
+
+        render(
+            <AuthContext.Provider value={{ token: 'dummy-token', user: expectedUser }}>
+                <OrdersChef displayedSection="delivered" />
+            </AuthContext.Provider>
+        );
+
+        fireEvent.click(screen.getByText('Order Delivering'));
+
+        await waitFor(() => {
+            expect(axios.get).toHaveBeenCalledTimes(3);
+            const firstProduct = screen.getByText('Product 1 (1)');
+            expect(firstProduct).toBeInTheDocument();
+        });
+    });
+
+    test('render Cancel Order', async () => {
+        const expectedOrders = [
+            {
+                order: 1,
+                client: 'Pedro',
+                dateEntry: '2022-3-10',
+                status: 'pending',
+                products: [
+                    { product: { name: 'Product 1' }, qty: '1' }
+                ]
+            }
+        ];
+
+        const expectedUser = {
+            email: 'lucas@gmail.com',
+            role: 'chef',
+            id: 6
+        };
+
+        axios.get.mockResolvedValue({ data: expectedOrders });
+
+        render(
+            <AuthContext.Provider value={{ token: 'dummy-token', user: expectedUser }}>
+                <OrdersChef displayedSection="pending" />
+            </AuthContext.Provider>
+        );
+
+        fireEvent.click(screen.getByText('Pending Order'));
+
+        await waitFor(() => {
+            expect(axios.get).toHaveBeenCalledTimes(2);
+            const firstProduct = screen.getByText('Product 1 (1)');
+            expect(firstProduct).toBeInTheDocument();
+        });
+
+        axios.put.mockResolvedValue({})
+        axios.get.mockResolvedValue({})
+
+
+        fireEvent.click(screen.getByText('Cancel'));
+        await waitFor(() => {
+           expect(screen.getByText('Order Cancelled')).toBeInTheDocument()
+        });
+
     });
 });
 
-describe('OrdersChef', () => {
-    it('should fetch pending orders and update state', async () => {
+
+
+
+
+
+/* describe('OrdersChef', () => {
+    fit('should fetch pending orders and update state', async () => {
         const chef = jest.fn();
         const token = '';
 
@@ -57,7 +165,9 @@ describe('OrdersChef', () => {
 
         render(
             <AuthContext.Provider value={{ chef, token }} >
+                <BrowserRouter>
                 <OrdersChef />
+                </BrowserRouter>
             </AuthContext.Provider>
         );
 
@@ -72,6 +182,8 @@ describe('OrdersChef', () => {
         );
         const pendingOrderElements = await screen.findByTestId('pending-order');
         expect(pendingOrderElements).toBeDefined();
+
+        
     });
 })
 
@@ -147,4 +259,4 @@ expect(deliveringButton).not.toBeNull();
 
 });
 
-
+ */
