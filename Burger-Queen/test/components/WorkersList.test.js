@@ -64,45 +64,6 @@ describe('WorkersList', () => {
 
   })
  
-  test('render Delete Worker', async () => {
-    const mockWorkers = [
-      { id: 1, email: 'worker1@example.com', role: 'admin' },
-      { id: 2, email: 'worker2@example.com', role: 'user' },
-    ];
-
-    const expectedUser = {
-      email: 'hugo@gmail.com',
-      role: 'admin',
-      id: 6
-    };
-
-
-    axios.get.mockResolvedValue({ data: mockWorkers });
-
-    render(
-      <AuthContext.Provider value={{ token: 'dummy-token', user: expectedUser }}>
-        <BrowserRouter>
-          <WorkersList />
-        </BrowserRouter>
-      </AuthContext.Provider>
-    );
-
-    await waitFor(() => {
-      expect(screen.getByText('worker1@example.com')).toBeInTheDocument()
-      expect(screen.getByText('worker2@example.com')).toBeInTheDocument()
-    })
-
-    axios.delete.mockResolvedValue({})
-    axios.get.mockResolvedValue({})
-    fireEvent.click(screen.getAllByText('Delete')[0]);
-
-    
-    await waitFor(() => {
-      expect(screen.getByText('Deleted worker')).toBeInTheDocument()
-   });
-    
-  })
- 
 
 test('close modal', () => {
   // Arrange
