@@ -25,7 +25,7 @@ function Waiter() {
     se verifica si el token existe.  */
     const fetchProducts = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/products', {
+        const response = await axios.get('https://json-server-beta-mauve.vercel.app/products', {
           headers: {
             Authorization: `Bearer ${token}` // Reemplaza con tu token de autenticación
           }
@@ -135,7 +135,7 @@ function Waiter() {
     setOrder(newOrder);
 
     try {
-      const response = await axios.post('http://localhost:8080/orders', newOrder, {
+      const response = await axios.post('https://json-server-beta-mauve.vercel.app/orders', newOrder, {
         headers: {
           Authorization: `Bearer ${token}` // Reemplaza con tu token de autenticación
         }

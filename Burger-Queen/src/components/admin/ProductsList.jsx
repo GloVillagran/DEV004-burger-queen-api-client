@@ -17,7 +17,7 @@ const ProductsList = () => {
 
   const fetchProducts = async () => {
     try {
-      const response = await axios.get('http://localhost:8080/products', {
+      const response = await axios.get('https://json-server-beta-mauve.vercel.app/products', {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -31,7 +31,7 @@ const ProductsList = () => {
   const editProduct = async (productId) => {
     setIsModalOpen(true);
     try {
-      const response = await axios.get(`http://localhost:8080/products/${productId}`, {
+      const response = await axios.get(`https://json-server-beta-mauve.vercel.app/products/${productId}`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -49,7 +49,7 @@ const ProductsList = () => {
 
   const updateProduct = async (productId, updatedData) => {
     try {
-      await axios.patch(`http://localhost:8080/products/${productId}`, updatedData, {
+      await axios.patch(`https://json-server-beta-mauve.vercel.app/products/${productId}`, updatedData, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -63,7 +63,7 @@ const ProductsList = () => {
 
   const deleteProduct = async (productId) => {
     try {
-      await axios.delete(`http://localhost:8080/products/${productId}`, {
+      await axios.delete(`https://json-server-beta-mauve.vercel.app/products/${productId}`, {
         headers: {
           Authorization: `Bearer ${token}`
         }

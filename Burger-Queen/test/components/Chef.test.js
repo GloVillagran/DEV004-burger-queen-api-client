@@ -173,7 +173,7 @@ describe('Chef component', () => {
 
         // Verificar que se haya realizado la solicitud GET correctamente
         expect(axios.get).toHaveBeenCalledWith(
-            'http://localhost:8080/orders?status=pending',
+            'https://json-server-beta-mauve.vercel.app/orders?status=pending',
             {
                 headers: {
                     Authorization: `Bearer ${token}`
@@ -206,7 +206,7 @@ describe('Delivered', () => {
 
         // Verificar que se haya realizado la solicitud GET correctamente
         expect(axios.get).toHaveBeenCalledWith(
-            'http://localhost:8080/orders?status=delivered',
+            'https://json-server-beta-mauve.vercel.app/orders?status=delivered',
             {
                 headers: {
                     Authorization: `Bearer ${token}`

@@ -19,7 +19,7 @@ function OrdersChef() {
   const fetchPendingOrders = async () => {
     try {
 
-      const response = await axios.get('http://localhost:8080/orders?status=pending', {
+      const response = await axios.get('https://json-server-beta-mauve.vercel.app/orders?status=pending', {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -42,7 +42,7 @@ function OrdersChef() {
   // realiza la solicitud a la API y actualiza el estado con los pedidos entregados. 
   const fetchDeliveredOrders = async () => {
     try {
-      const response = await axios.get('http://localhost:8080/orders?status=delivered', {
+      const response = await axios.get('https://json-server-beta-mauve.vercel.app/orders?status=delivered', {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -69,7 +69,7 @@ function OrdersChef() {
   const sendOrder = async (orderId) => {
     try {
       await axios.patch(
-        `http://localhost:8080/orders/${orderId}`,
+        `https://json-server-beta-mauve.vercel.app/orders/${orderId}`,
         { dateProcessed: new Date().toISOString(), status: 'delivered' },
         {
           headers: {
@@ -90,7 +90,7 @@ function OrdersChef() {
   // Función para cancelar un pedido(debo ocupar delete revisar y cambiar)
   const cancelOrder = async (orderId) => {
     try {
-      await axios.put(`http://localhost:8080/orders/${orderId}`, { status: 'cancelled' }, {
+      await axios.put(`https://json-server-beta-mauve.vercel.app/orders/${orderId}`, { status: 'cancelled' }, {
         headers: {
           Authorization: `Bearer ${token}`
         }

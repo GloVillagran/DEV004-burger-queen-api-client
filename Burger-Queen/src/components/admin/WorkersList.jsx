@@ -19,7 +19,7 @@ const WorkersList = () => {
 
   const fetchWorkers = async () => {
     try {
-      const response = await axios.get('http://localhost:8080/users', {
+      const response = await axios.get('https://json-server-beta-mauve.vercel.app/users', {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -33,7 +33,7 @@ const WorkersList = () => {
   const editWorker = async (worker) => {
     setIsModalOpen(true);
     try {
-      const response = await axios.get(`http://localhost:8080/users/${worker.id}`, {
+      const response = await axios.get(`https://json-server-beta-mauve.vercel.app/users/${worker.id}`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -51,7 +51,7 @@ const WorkersList = () => {
 
   const updateWorker = async (uid, updatedData) => {
     try {
-      const response = await axios.patch(`http://localhost:8080/users/${uid}`, updatedData, {
+      const response = await axios.patch(`https://json-server-beta-mauve.vercel.app/users/${uid}`, updatedData, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -65,7 +65,7 @@ const WorkersList = () => {
 
   const deleteWorker = async (uid) => {
     try {
-      const response = await axios.delete(`http://localhost:8080/users/${uid}`, {
+      const response = await axios.delete(`https://json-server-beta-mauve.vercel.app/users/${uid}`, {
         headers: {
           Authorization: `Bearer ${token}`
         }

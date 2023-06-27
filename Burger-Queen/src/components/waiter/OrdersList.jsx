@@ -19,7 +19,7 @@ const [showAlert, setShowAlert] = useState(false);
     const fetchDeliveredOrders = async () => {
       try {
        
-          const response = await axios.get('http://localhost:8080/orders', {
+          const response = await axios.get('https://json-server-beta-mauve.vercel.app/orders', {
             headers: {
               Authorization: `Bearer ${token}`
             }
@@ -38,7 +38,7 @@ const [showAlert, setShowAlert] = useState(false);
 
   const handleMarkAsDelivered = async (orderId) => {
     try {
-      await axios.patch(`http://localhost:8080/orders/${orderId}`, { status: 'done' }, {
+      await axios.patch(`https://json-server-beta-mauve.vercel.app/orders/${orderId}`, { status: 'done' }, {
         headers: {
           Authorization: `Bearer ${token}`
         }

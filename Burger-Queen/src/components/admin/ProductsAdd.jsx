@@ -19,7 +19,7 @@ const ProductsAdd = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:8080/products', {
+      const response = await axios.post('https://json-server-beta-mauve.vercel.app/products', {
         name: productName,
         type: productType,
         price: productPrice,

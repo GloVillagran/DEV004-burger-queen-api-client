@@ -17,7 +17,7 @@ const WorkersAdd = () => {
 
   const addWorker = async () => {
     try {
-      await axios.post(`http://localhost:8080/users/`, newWorker);
+      await axios.post(`https://json-server-beta-mauve.vercel.app/users/`, newWorker);
       setShowAlert(true); // Mostrar la alerta "Ready, added worker" al agregar un trabajador
     } catch (error) {
       console.error('Error adding worker:', error);
