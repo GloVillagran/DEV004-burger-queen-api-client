@@ -45,7 +45,7 @@ const Login = () => {
     console.log('Password:', password);
 
     try {
-      const response = await axios.post('https://burger-queen-api-mock-glovillagran.vercel.app/login', {
+      const response = await axios.post('https://json-server-beta-mauve.vercel.app/login', {
         email,
         password,
       });
