@@ -234,7 +234,7 @@ JavaScript) y también nos permite desplegar aplicaciones web que se ejecutan en
 ![Despliegue con Vercel](./Burger-Queen//src//assets//img/despliegueVercel.png)
 
 * Aplicación ya desplegada.
-[Burger-Queen Api Client](https://vercel.com/glovillagran/dev-004-burger-queen-api-client) 
+[Burger-Queen Api Client](https://dev-004-burger-queen-api-client-weld.vercel.app/) 
 
 * Api Mock ya desplegada.
 [Api Mock](https://json-server-beta-mauve.vercel.app/) 
