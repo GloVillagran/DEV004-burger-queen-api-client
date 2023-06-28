@@ -227,16 +227,17 @@ de la aplicación. Se realizaron 16 test para los componentes Login, Waiter, Che
 
 ## 8. Despliegue
 
-Para el despliegue de la aplicación se ocupo 
+Para el despliegue de la aplicación y Api Mock, se ocupo [Vercel](https://vercel.com/) que es una plataforma de _despliegue_ que nos permite desplegar nuestra aplicación web estática (HTML, CSS y
+JavaScript) y también nos permite desplegar aplicaciones web que se ejecutan en el servidor (Node.js).
 
-* [Vercel](https://vercel.com/) es una plataforma de _despliegue_ que
-nos permite desplegar nuestra aplicación web estática (HTML, CSS y
-JavaScript) y también nos permite desplegar aplicaciones web que se
-ejecutan en el servidor (Node.js).
-* [Netlify](https://www.netlify.com/) al igual que Vercel, es una
-plataforma de _despliegue_ que nos permite desplegar nuestra aplicación
-web estática (HTML, CSS y JavaScript) y también nos permite desplegar
-aplicaciones web que se ejecutan en el servidor (Node.js).
+
+![Despliegue con Vercel](./Burger-Queen//src//assets//img/despliegueVercel.png)
+
+* Aplicación ya desplegada.
+[Burger-Queen Api Client](https://vercel.com/glovillagran/dev-004-burger-queen-api-client) 
+
+* Api Mock ya desplegada.
+[Api Mock](https://json-server-beta-mauve.vercel.app/) 
 
 ## 9. Modo de Uso
 
