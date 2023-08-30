@@ -255,6 +255,12 @@ Correr la aplicación:
 Testeo de la aplicación:
 `$ npm test`
 
+Usuarios registrados para probar aplicación: 
+`admin: hugo@gmail.com`
+`waiter: lucas@gmail.com`
+`chef: gloria@gmail.com`
+contraseña utilizada para todos los usuarios: 123456
+
 ## 10. Referencias
 
 ### Frameworks 
